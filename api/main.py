@@ -18,8 +18,18 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
  
 # ... (keep the existing helper functions extract_video_id, get_video_details)
 
-@app.route('/summarize', methods=['POST'])
+@app.route('/summarize', methods=['POST', 'OPTIONS'])
+@cross_origin()
 def summarize():
+
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify()
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return response
+
     video_url = request.json['url']
     
     # Extract video ID from URL
