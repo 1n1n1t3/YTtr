@@ -12,13 +12,18 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
           },
           body: JSON.stringify({url: videoUrl})
         })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
         .then(data => {
           var summary = data.summary;
           chrome.runtime.sendMessage({action: 'updateSummary', summary: summary});
         })
         .catch(error => {
-          console.error('Error calling serverless function:', error);
+          console.error('Error calling API:', error);
           chrome.runtime.sendMessage({action: 'updateSummary', summary: null});
         });
       } else {
