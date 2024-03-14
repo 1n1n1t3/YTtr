@@ -58,12 +58,15 @@ def summarize():
         """
 
         # Call Claude API to summarize video
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
-            max_tokens=4000,
-            messages=[{"role": "user", "content": prompt}],
-            stream=True,  # Enable streaming
-        )
+        try:
+            response = client.messages.create(
+                model="claude-3-haiku-20240307",
+                max_tokens=4000,
+                messages=[{"role": "user", "content": prompt}]
+            )
+        except Exception as e:
+            app.logger.error(f"Error calling Claude API: {e}")
+            return jsonify({"error": str(e)}), 500
 
         # Initialize an empty string to store the summary
         summary = ""
