@@ -68,18 +68,6 @@ def summarize():
 
                 Please provide your summary in the specified format.
                 """
-                
-                try:
-                    response = client.messages.create(
-                        model="claude-3-haiku-20240307",
-                        max_tokens=4000,
-                        messages=[{"role": "user", "content": prompt}],
-                        stream=True
-                    )
-                except Exception as e:
-                    with app.app_context():
-                        app.logger.error(f"Error calling Claude API: {e}")
-                        return jsonify({"error": str(e)}), 500
 
                 summary = ""
 
