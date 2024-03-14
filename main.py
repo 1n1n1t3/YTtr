@@ -14,7 +14,7 @@ api_key = os.environ.get('ANTHROPIC_API_KEY', '')
 client = Anthropic(api_key=api_key)
 
 yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
-
+ 
 # ... (keep the existing helper functions extract_video_id, get_video_details)
 
 @app.route('/summarize', methods=['POST'])
