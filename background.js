@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       
       if (videoId) {
         // Call serverless function to summarize video
-        fetch('http://localhost:5000/summarize', {
+        fetch('https://y-1j2i307bd-ddavidkovs-projects.vercel.app/summarize', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
