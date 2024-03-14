@@ -28,61 +28,61 @@ def summarize():
             response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
             response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
             return response
-
-        video_url = request.json['url']
-        
-        # Extract video ID from URL
-        video_id = extract_video_id(video_url)
-
-        # Get video details using YouTube Data API
-        video_details = get_video_details(video_id)
-
-        if video_details:
-            # Prepare prompt for Claude model
-            prompt = f"""
-            You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
-
-            Here are the details of the video you need to summarize:
-
-            Title: {video_details['title']}
-            Channel: {video_details['channel']}
-            Views: {video_details['views']}
-            Likes: {video_details['likes']}
-
-            Transcript:
-            {video_details['transcript']}
-
-            Instructions:
-            1. Read through the entire transcript carefully to understand the main topics and key points discussed.
-            2. Identify the most important and relevant points from the transcript.
-            3. The provided transcript has timestamps in this format [h:mm:ss.ms]
-            4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
-            5. Present the summary in a clear and organized manner, with each main point on a new line.
-
-            Example output format:
-            [mm:ss] First main point summary.
-            [mm:ss] Second main point summary.
-            [mm:ss] Third main point summary.
-            ...
-
-            Please provide your summary in the specified format.
-            """
             
-            try:
-                response = client.messages.create(
-                    model="claude-3-haiku-20240307",
-                    max_tokens=4000,
-                    messages=[{"role": "user", "content": prompt}],
-                    stream=True
-                )
-            except Exception as e:
-                with app.app_context():
-                    app.logger.error(f"Error calling Claude API: {e}")
-                    return jsonify({"error": str(e)}), 500
+        with app.app_context():
+            video_url = request.json['url']
+            
+            # Extract video ID from URL
+            video_id = extract_video_id(video_url)
 
-            summary = ""
+            # Get video details using YouTube Data API
+            video_details = get_video_details(video_id)
 
-            with app.app_context():
+            if video_details:
+                # Prepare prompt for Claude model
+                prompt = f"""
+                You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
+
+                Here are the details of the video you need to summarize:
+
+                Title: {video_details['title']}
+                Channel: {video_details['channel']}
+                Views: {video_details['views']}
+                Likes: {video_details['likes']}
+
+                Transcript:
+                {video_details['transcript']}
+
+                Instructions:
+                1. Read through the entire transcript carefully to understand the main topics and key points discussed.
+                2. Identify the most important and relevant points from the transcript.
+                3. The provided transcript has timestamps in this format [h:mm:ss.ms]
+                4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
+                5. Present the summary in a clear and organized manner, with each main point on a new line.
+
+                Example output format:
+                [mm:ss] First main point summary.
+                [mm:ss] Second main point summary.
+                [mm:ss] Third main point summary.
+                ...
+
+                Please provide your summary in the specified format.
+                """
+                
+                try:
+                    response = client.messages.create(
+                        model="claude-3-haiku-20240307",
+                        max_tokens=4000,
+                        messages=[{"role": "user", "content": prompt}],
+                        stream=True
+                    )
+                except Exception as e:
+                    with app.app_context():
+                        app.logger.error(f"Error calling Claude API: {e}")
+                        return jsonify({"error": str(e)}), 500
+
+                summary = ""
+
                 try:
                     response = client.messages.create(
                         model="claude-3-haiku-20240307",
