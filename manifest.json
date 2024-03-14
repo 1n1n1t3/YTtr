@@ -3,7 +3,7 @@
     "name": "YouTube Video Summarizer",
     "version": "1.0",
     "description": "Summarize YouTube videos using the Claude API",
-    "permissions": ["storage", "tabs", "https://www.youtube.com/*"],
+    "permissions": ["storage", "tabs","https://y-ttr-amber.vercel.app/", "https://www.youtube.com/*"],
     "host_permissions": [
       "https://www.youtube.com/*"  
     ],
