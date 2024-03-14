@@ -5,16 +5,6 @@
         "use": "@vercel/python"
       }
     ],
-    "routes": [
-      {
-        "src": "/summarize",
-        "dest": "api/main.py"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "api/main.py"
-      }
-    ],
     "headers": [
       {
         "source": "/summarize",
