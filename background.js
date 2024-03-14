@@ -6,12 +6,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       if (videoId) {
           // Call serverless function to summarize video
           fetch('https://y-ttr-amber.vercel.app/summarize', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ url: videoUrl })
-          })
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ url: videoUrl }),
+          mode: 'cors',
+          credentials: 'include'
+          }) 
           .then(response => {
               if (!response.ok) {
                   throw new Error('Network response was not ok');

@@ -8,8 +8,7 @@ import youtube_transcript_api
 import datetime
 
 app = Flask(__name__)
-
-CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all routes
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 # Set up Anthropic API client 
 api_key = os.environ.get('ANTHROPIC_API_KEY', '')
 client = Anthropic(api_key=api_key)
