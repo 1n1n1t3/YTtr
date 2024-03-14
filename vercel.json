@@ -5,22 +5,14 @@
         "use": "@vercel/python"
       }
     ],
-    "headers": [
+    "routes": [
       {
-        "source": "/summarize",
-        "headers": [
-          { "key": "Access-Control-Allow-Origin", "value": "*" },
-          { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
-          { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
-        ]
+        "src": "/summarize",
+        "dest": "api/main.py"
       },
       {
-        "source": "/(.*)",
-        "headers": [
-          { "key": "Access-Control-Allow-Origin", "value": "*" },
-          { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
-          { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
-        ]
+        "src": "/(.*)",
+        "dest": "api/main.py"
       }
     ]
   }
