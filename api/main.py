@@ -73,7 +73,7 @@ def summarize():
                     with client.messages.stream(
                         max_tokens=4000,
                         messages=[{"role": "user", "content": prompt}],
-                        model="claude-3-haiku-20240307",
+                        model="claude-3-haiku-20240307"
                     ) as stream:
                         for text in stream.text_stream:
                             yield text
