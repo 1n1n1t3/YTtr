@@ -76,6 +76,7 @@ def summarize():
                         model="claude-3-haiku-20240307",
                     ) as stream:
                         for text in stream.text_stream:
+                            print(f"Received chunk: {text}")
                             yield text
                             
 

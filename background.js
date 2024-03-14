@@ -3,15 +3,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       var videoUrl = request.url;
       var videoId = extractVideoId(videoUrl);
 
+      console.log(JSON.stringify({ url: videoUrl }))
+
       if (videoId) {
           // Call serverless function to summarize video
           fetch('https://y-ttr-amber.vercel.app/summarize', {
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({ url: videoUrl })
-          }) 
+          })
           .then(response => {
               if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -57,8 +59,10 @@ async function readChunkedResponse(reader) {
     const dataPrefix = 'data: ';
     if (chunk.startsWith(dataPrefix)) {
       result += chunk.slice(dataPrefix.length);
+      chrome.runtime.sendMessage({ action: 'updateSummary', summary: { chunk: chunk.slice(dataPrefix.length) } });
     } else if (chunk.trim().length > 0) {
       result += chunk;
+      chrome.runtime.sendMessage({ action: 'updateSummary', summary: { chunk: chunk } });
     }
   }
   return result;

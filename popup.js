@@ -27,12 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.action === 'updateSummary') {
-            if (request.summary !== null) {
+            if (typeof request.summary === 'string') {
+                // Handle the final summary
                 var formattedSummary = request.summary.replace(/\n/g, '<br>').replace(/\[(\d{1,2}:\d{1,2})\]/g, function(match, p1) {
                     return "<a href='#' class='timestamp-link' data-timestamp='" + p1 + "'>[" + p1 + "]</a>";
                 });
                 summaryOutput.innerHTML = formattedSummary;
                 addTimestampClickHandlers();
+            } else if (typeof request.summary === 'object' && request.summary.hasOwnProperty('chunk')) {
+                // Handle the streaming chunks
+                summaryOutput.innerHTML += request.summary.chunk;
             } else {
                 summaryOutput.textContent = 'Failed to summarize video.';
             }
