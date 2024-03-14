@@ -73,7 +73,8 @@ def summarize():
                 response = client.messages.create(
                     model="claude-3-haiku-20240307",
                     max_tokens=4000,
-                    messages=[{"role": "user", "content": prompt}]
+                    messages=[{"role": "user", "content": prompt}],
+                    stream=True
                 )
             except Exception as e:
                 with app.app_context():

@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var match = currentUrl.match(youtubeRegex);
 
             if (match) {
-                chrome.runtime.sendMessage({ action: 'summarize', url: currentUrl });
                 summaryOutput.textContent = 'Summarizing video...';
+                chrome.runtime.sendMessage({ action: 'summarize', url: currentUrl });
             } else {
                 summaryOutput.textContent = 'The current tab is not a YouTube video.';
             }
@@ -27,13 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.action === 'updateSummary') {
-            if (request.summary) {
+            if (request.summary !== null) {
                 var formattedSummary = request.summary.replace(/\n/g, '<br>').replace(/\[(\d{1,2}:\d{1,2})\]/g, function(match, p1) {
                     return "<a href='#' class='timestamp-link' data-timestamp='" + p1 + "'>[" + p1 + "]</a>";
                 });
                 summaryOutput.innerHTML = formattedSummary;
-                // Send the summary to the background script for storage
-                chrome.runtime.sendMessage({ action: 'updateSummary', summary: formattedSummary });
                 addTimestampClickHandlers();
             } else {
                 summaryOutput.textContent = 'Failed to summarize video.';
@@ -56,5 +54,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
 });
