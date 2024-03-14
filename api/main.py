@@ -77,14 +77,17 @@ def summarize():
             # Iterate over the streaming response and update the summary
             for chunk in response.content:
                 summary += chunk.text
-                # Send the updated summary to the client
+                # Send the updated summary to the client within the app context
+                with app.app_context():
+                    yield f"data: {summary}\n\n"
+
+            # Send the final summary to the client within the app context
+            with app.app_context():
                 yield f"data: {summary}\n\n"
 
-            # Send the final summary to the client
-            yield f"data: {summary}\n\n"
-
         else:
-            return jsonify({"error": "Could not retrieve video details"}), 400
+            with app.app_context():
+                return jsonify({"error": "Could not retrieve video details"}), 400
         
     except Exception as e:
         app.logger.error(f"Error in summarize: {e}")
