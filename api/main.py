@@ -8,7 +8,7 @@ import youtube_transcript_api
 import datetime
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": ["*"]}})
+cors = CORS(app, resources={r"/*": {"origins": ["chrome-extension://fkcjlbfohcfcfhjbbbjgjcedepjmmdgh"]}})
 # Set up Anthropic API client 
 api_key = os.environ.get('ANTHROPIC_API_KEY', '')
 client = Anthropic(api_key=api_key)
@@ -21,15 +21,15 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
 @cross_origin()
 def summarize():
        
-        if request.method == 'OPTIONS':
-            # Handle preflight request
-            response = jsonify()
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-            response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
-            return response
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify()
+        response.headers.add('Access-Control-Allow-Origin', 'chrome-extension://fkcjlbfohcfcfhjbbbjgjcedepjmmdgh')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return response
             
-        try:
+    try:
             video_url = request.json['url']
             
             # Extract video ID from URL
@@ -88,7 +88,7 @@ def summarize():
 
                 yield f"data: {summary}\n\n"
 
-        except Exception as e:
+    except Exception as e:
             app.logger.error(f"Error in summarize: {e}")
             return jsonify({"error": str(e)}), 500
 
