@@ -7,7 +7,10 @@ from flask_cors import CORS, cross_origin
 import youtube_transcript_api
 import datetime
 
+import logging
+
 app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all routes
 # Set up Anthropic API client 
@@ -21,67 +24,71 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
 @app.route('/summarize', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def summarize():
-    # ... (existing code for handling preflight requests)
+        # ... (existing code for handling preflight requests)
+    try:
+        video_url = request.json['url']
+        video_id = extract_video_id(video_url)
+        video_details = get_video_details(video_id)
 
-    video_url = request.json['url']
-    video_id = extract_video_id(video_url)
-    video_details = get_video_details(video_id)
+        if video_details:
+            prompt = f"""
+            You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
 
-    if video_details:
-        prompt = f"""
-        You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
+            Here are the details of the video you need to summarize:
 
-        Here are the details of the video you need to summarize:
+            Title: {video_details['title']}
+            Channel: {video_details['channel']}
+            Views: {video_details['views']}
+            Likes: {video_details['likes']}
 
-        Title: {video_details['title']}
-        Channel: {video_details['channel']}
-        Views: {video_details['views']}
-        Likes: {video_details['likes']}
+            Transcript:
+            {video_details['transcript']}
 
-        Transcript:
-        {video_details['transcript']}
+            Instructions:
+            1. Read through the entire transcript carefully to understand the main topics and key points discussed.
+            2. Identify the most important and relevant points from the transcript.
+            3. The provided transcript has timestamps in this format [h:mm:ss.ms]
+            4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
+            5. Present the summary in a clear and organized manner, with each main point on a new line.
 
-        Instructions:
-        1. Read through the entire transcript carefully to understand the main topics and key points discussed.
-        2. Identify the most important and relevant points from the transcript.
-        3. The provided transcript has timestamps in this format [h:mm:ss.ms]
-        4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
-        5. Present the summary in a clear and organized manner, with each main point on a new line.
+            Example output format:
+            [mm:ss] First main point summary.
+            [mm:ss] Second main point summary.
+            [mm:ss] Third main point summary.
+            ...
 
-        Example output format:
-        [mm:ss] First main point summary.
-        [mm:ss] Second main point summary.
-        [mm:ss] Third main point summary.
-        ...
+            Please provide your summary in the specified format.
+            """
 
-        Please provide your summary in the specified format.
-        """
+            # Call Claude API to summarize video
+            try:
+                response = client.messages.create(
+                    model="claude-3-haiku-20240307",
+                    max_tokens=4000,
+                    messages=[{"role": "user", "content": prompt}]
+                )
+            except Exception as e:
+                app.logger.error(f"Error calling Claude API: {e}")
+                return jsonify({"error": str(e)}), 500
 
-        # Call Claude API to summarize video
-        try:
-            response = client.messages.create(
-                model="claude-3-haiku-20240307",
-                max_tokens=4000,
-                messages=[{"role": "user", "content": prompt}]
-            )
-        except Exception as e:
-            app.logger.error(f"Error calling Claude API: {e}")
-            return jsonify({"error": str(e)}), 500
+            # Initialize an empty string to store the summary
+            summary = ""
 
-        # Initialize an empty string to store the summary
-        summary = ""
+            # Iterate over the streaming response and update the summary
+            for chunk in response.content:
+                summary += chunk.text
+                # Send the updated summary to the client
+                yield f"data: {summary}\n\n"
 
-        # Iterate over the streaming response and update the summary
-        for chunk in response.content:
-            summary += chunk.text
-            # Send the updated summary to the client
+            # Send the final summary to the client
             yield f"data: {summary}\n\n"
 
-        # Send the final summary to the client
-        yield f"data: {summary}\n\n"
-
-    else:
-        return jsonify({"error": "Could not retrieve video details"}), 400
+        else:
+            return jsonify({"error": "Could not retrieve video details"}), 400
+        
+    except Exception as e:
+        app.logger.error(f"Error in summarize: {e}")
+        return jsonify({"error": str(e)}), 500
 
 def extract_video_id(url):
     video_id = re.findall(r"v=(\S{11})", url)[0]
