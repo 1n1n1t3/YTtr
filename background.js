@@ -21,8 +21,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
               return readChunkedResponse(response.body.getReader());
           })
           .then(data => {
-              var summary = data.trim();
-              chrome.runtime.sendMessage({ action: 'updateSummary', summary: summary });
+                console.log(data);
+                var summary = data.trim();
+                chrome.runtime.sendMessage({ action: 'updateSummary', summary: summary });
           })
           .catch(error => {
               console.error('Error calling API:', error);
@@ -51,19 +52,13 @@ function extractVideoId(url) {
 async function readChunkedResponse(reader) {
   let result = '';
   while (true) {
-    const { done, value } = await reader.read();
-    if (done) {
-      break;
-    }
-    const chunk = new TextDecoder().decode(value);
-    const dataPrefix = 'data: ';
-    if (chunk.startsWith(dataPrefix)) {
-      result += chunk.slice(dataPrefix.length);
-      chrome.runtime.sendMessage({ action: 'updateSummary', summary: { chunk: chunk.slice(dataPrefix.length) } });
-    } else if (chunk.trim().length > 0) {
+      const { done, value } = await reader.read();
+      if (done) {
+          break;
+      }
+      const chunk = new TextDecoder().decode(value);
       result += chunk;
       chrome.runtime.sendMessage({ action: 'updateSummary', summary: { chunk: chunk } });
-    }
   }
   return result;
 }

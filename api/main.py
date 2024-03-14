@@ -74,6 +74,7 @@ def summarize():
                         max_tokens=4000,
                         messages=[{"role": "user", "content": prompt}],
                         model="claude-3-haiku-20240307",
+                        headers={"Content-Type": "application/json"}
                     ) as stream:
                         for text in stream.text_stream:
                             print(f"Received chunk: {text}")
