@@ -92,7 +92,9 @@ def summarize():
     except Exception as e:
         app.logger.error(f"Error in summarize: {e}")
         return jsonify({"error": str(e)}), 500
-
+    finally:
+            app.app_context().pop()
+            
 def extract_video_id(url):
     video_id = re.findall(r"v=(\S{11})", url)[0]
     return video_id
