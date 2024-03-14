@@ -10,8 +10,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
           headers: {
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ url: videoUrl }),
-          mode: 'no-cors'
+          body: JSON.stringify({ url: videoUrl })
           }) 
           .then(response => {
               if (!response.ok) {
