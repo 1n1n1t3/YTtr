@@ -83,22 +83,27 @@ def summarize():
 
             summary = ""
 
-            for chunk in response.content:
-                summary += chunk.text
-                with app.app_context():
+            with app.app_context():
+                try:
+                    response = client.messages.create(
+                        model="claude-3-haiku-20240307",
+                        max_tokens=4000,
+                        messages=[{"role": "user", "content": prompt}],
+                        stream=True
+                    )
+                except Exception as e:
+                    app.logger.error(f"Error calling Claude API: {e}")
+                    return jsonify({"error": str(e)}), 500
+
+                for chunk in response.content:
+                    summary += chunk.text
                     yield f"data: {summary}\n\n"
 
-            with app.app_context():
                 yield f"data: {summary}\n\n"
 
-        else:
-            with app.app_context():
-                return jsonify({"error": "Could not retrieve video details"}), 400
-        
     except Exception as e:
-        with app.app_context():
-            app.logger.error(f"Error in summarize: {e}")
-            return jsonify({"error": str(e)}), 500
+        app.logger.error(f"Error in summarize: {e}")
+        return jsonify({"error": str(e)}), 500
 
 def extract_video_id(url):
     video_id = re.findall(r"v=(\S{11})", url)[0]

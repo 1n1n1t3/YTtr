@@ -49,15 +49,17 @@ function extractVideoId(url) {
 async function readChunkedResponse(reader) {
   let result = '';
   while (true) {
-      const { done, value } = await reader.read();
-      if (done) {
-          break;
-      }
-      const chunk = new TextDecoder().decode(value);
-      const dataPrefix = 'data: ';
-      if (chunk.startsWith(dataPrefix)) {
-          result += chunk.slice(dataPrefix.length);
-      }
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+    const chunk = new TextDecoder().decode(value);
+    const dataPrefix = 'data: ';
+    if (chunk.startsWith(dataPrefix)) {
+      result += chunk.slice(dataPrefix.length);
+    } else if (chunk.trim().length > 0) {
+      result += chunk;
+    }
   }
   return result;
 }
