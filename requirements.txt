@@ -3,4 +3,3 @@ flask-cors
 anthropic
 requests
 youtube-transcript-api
-serverless_wsgi
