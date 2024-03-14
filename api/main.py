@@ -27,6 +27,7 @@ def summarize():
             response.headers.add('Access-Control-Allow-Origin', '*')
             response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
             response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
             return response
 
         video_url = request.json['url']
