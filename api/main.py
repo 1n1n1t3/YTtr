@@ -8,7 +8,8 @@ import youtube_transcript_api
 import datetime
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": ["chrome-extension://fkcjlbfohcfcfhjbbbjgjcedepjmmdgh"]}})
+
+CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all routes
 # Set up Anthropic API client 
 api_key = os.environ.get('ANTHROPIC_API_KEY', '')
 client = Anthropic(api_key=api_key)
@@ -20,72 +21,70 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
 @app.route('/summarize', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def summarize():
-    #with app.test_request_context():   
-        if request.method == 'OPTIONS':
-            # Handle preflight request
-            response = jsonify()
-            response.headers.add('Access-Control-Allow-Origin', 'chrome-extension://fkcjlbfohcfcfhjbbbjgjcedepjmmdgh')
-            response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-            response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
-            return response
-            
-        try:
-            video_url = request.json['url']
-            
-            # Extract video ID from URL
-            video_id = extract_video_id(video_url)
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify()
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return response
 
-            # Get video details using YouTube Data API
-            video_details = get_video_details(video_id)
+    video_url = request.json['url']
+    
+    # Extract video ID from URL
+    video_id = extract_video_id(video_url)
 
-            if video_details:
-                # Prepare prompt for Claude model
-                prompt = f"""
-                You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
+    # Get video details using YouTube Data API
+    video_details = get_video_details(video_id)
 
-                Here are the details of the video you need to summarize:
+    if video_details:
+        # Prepare prompt for Claude model
+        prompt = f"""
+        You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
 
-                Title: {video_details['title']}
-                Channel: {video_details['channel']}
-                Views: {video_details['views']}
-                Likes: {video_details['likes']}
+        Here are the details of the video you need to summarize:
 
-                Transcript:
-                {video_details['transcript']}
+        Title: {video_details['title']}
+        Channel: {video_details['channel']}
+        Views: {video_details['views']}
+        Likes: {video_details['likes']}
 
-                Instructions:
-                1. Read through the entire transcript carefully to understand the main topics and key points discussed.
-                2. Identify the most important and relevant points from the transcript.
-                3. The provided transcript has timestamps in this format [h:mm:ss.ms]
-                4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
-                5. Present the summary in a clear and organized manner, with each main point on a new line.
+        Transcript:
+        {video_details['transcript']}
 
-                Example output format:
-                [mm:ss] First main point summary.
-                [mm:ss] Second main point summary.
-                [mm:ss] Third main point summary.
-                ...
+        Instructions:
+        1. Read through the entire transcript carefully to understand the main topics and key points discussed.
+        2. Identify the most important and relevant points from the transcript.
+        3. The provided transcript has timestamps in this format [h:mm:ss.ms]
+        4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
+        5. Present the summary in a clear and organized manner, with each main point on a new line.
 
-                Please provide your summary in the specified format.
-                """
-                try:
-                    summary = ""
-                    with client.messages.stream(
-                        max_tokens=4000,
-                        messages=[{"role": "user", "content": prompt}],
-                        model="claude-3-haiku-20240307",
-                    ) as stream:
-                        for text in stream.text_stream:
-                            yield f"data: {text}\n\n"
-                            
+        Example output format:
+        [mm:ss] First main point summary.
+        [mm:ss] Second main point summary.
+        [mm:ss] Third main point summary.
+        ...
 
-                except Exception as e:
-                    app.logger.error(f"Error calling Claude API: {e}")
-                    return jsonify({"error": str(e)}), 500
-                
-        except Exception as e:
-            app.logger.error(f"Error in summarize: {e}")
-            return jsonify({"error": str(e)}), 500
+        Please provide your summary in the specified format.
+        """
+        
+        # Call Claude API to summarize video
+        response = client.messages.create(
+            model="claude-3-haiku-20240307",
+            #model="claude-3-opus-20240229",
+            max_tokens=4000,
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        # Extract summary from API response
+        summary = response.content[0].text;
+        #summary = re.sub(r'\[(\d{1,2}:\d{1,2})\]', r"<a href='#' class='timestamp-link' data-timestamp='$1'>[$1]</a>", summary)
+        #print(summary)
+        return jsonify({"summary": str(summary)})
+    else:
+        return jsonify({"error": "Could not retrieve video details"}), 400
 
 def extract_video_id(url):
     video_id = re.findall(r"v=(\S{11})", url)[0]

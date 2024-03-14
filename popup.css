@@ -1,37 +1,37 @@
 body {
-    width: 300px;
-    padding: 10px;
-  }
-  
-  h1 {
-    font-size: 18px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 5px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  #summaryOutput {
-    white-space: pre-line; /* Ensures that line breaks are respected */
-    font-family: Arial, sans-serif; /* Sets a clean, readable font */
-    font-size: 14px; /* Sets a standard font size */
-    line-height: 1.6; /* Improves readability with more space between lines */
-    text-align: left; /* Aligns text to the left */
-    padding: 10px; /* Adds some padding inside the summary box */
-    margin-top: 10px; /* Adds space between the button and the summary box */
-    border: 1px solid #ccc; /* Adds a border around the summary box */
-    background-color: #f9f9f9; /* Sets a light background color for the summary box */
-    max-height: 300px; /* Sets a maximum height for the summary box */
-    overflow-y: auto; /* Adds a scrollbar if the content overflows */
-  }
+  width: 300px;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#summaryOutput {
+  white-space: pre-line; /* Ensures that line breaks are respected */
+  font-family: Arial, sans-serif; /* Sets a clean, readable font */
+  font-size: 14px; /* Sets a standard font size */
+  line-height: 1.6; /* Improves readability with more space between lines */
+  text-align: left; /* Aligns text to the left */
+  padding: 10px; /* Adds some padding inside the summary box */
+  margin-top: 10px; /* Adds space between the button and the summary box */
+  border: 1px solid #ccc; /* Adds a border around the summary box */
+  background-color: #f9f9f9; /* Sets a light background color for the summary box */
+  max-height: 300px; /* Sets a maximum height for the summary box */
+  overflow-y: auto; /* Adds a scrollbar if the content overflows */
+}
