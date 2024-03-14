@@ -18,10 +18,8 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
  
 # ... (keep the existing helper functions extract_video_id, get_video_details)
 
-@app.route('/summarize', methods=['POST', 'OPTIONS'])
-@cross_origin()
+app.route('/summarize', methods=['POST', 'OPTIONS'])
 def summarize():
-
     if request.method == 'OPTIONS':
         # Handle preflight request
         response = jsonify()
