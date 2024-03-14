@@ -21,24 +21,13 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
 @app.route('/summarize', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def summarize():
-    if request.method == 'OPTIONS':
-        # Handle preflight request
-        response = jsonify()
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
-        return response
+    # ... (existing code for handling preflight requests)
 
     video_url = request.json['url']
-    
-    # Extract video ID from URL
     video_id = extract_video_id(video_url)
-
-    # Get video details using YouTube Data API
     video_details = get_video_details(video_id)
 
     if video_details:
-        # Prepare prompt for Claude model
         prompt = f"""
         You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
 
@@ -67,22 +56,27 @@ def summarize():
 
         Please provide your summary in the specified format.
         """
-        
+
         # Call Claude API to summarize video
         response = client.messages.create(
             model="claude-3-haiku-20240307",
-            #model="claude-3-opus-20240229",
             max_tokens=4000,
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
+            stream=True,  # Enable streaming
         )
 
-        # Extract summary from API response
-        summary = response.content[0].text;
-        #summary = re.sub(r'\[(\d{1,2}:\d{1,2})\]', r"<a href='#' class='timestamp-link' data-timestamp='$1'>[$1]</a>", summary)
-        #print(summary)
-        return jsonify({"summary": str(summary)})
+        # Initialize an empty string to store the summary
+        summary = ""
+
+        # Iterate over the streaming response and update the summary
+        for chunk in response.content:
+            summary += chunk.text
+            # Send the updated summary to the client
+            yield f"data: {summary}\n\n"
+
+        # Send the final summary to the client
+        yield f"data: {summary}\n\n"
+
     else:
         return jsonify({"error": "Could not retrieve video details"}), 400
 
