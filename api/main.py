@@ -20,7 +20,7 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
 @app.route('/summarize', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def summarize():
-    with app.test_request_context():   
+    #with app.test_request_context():   
         if request.method == 'OPTIONS':
             # Handle preflight request
             response = jsonify()
