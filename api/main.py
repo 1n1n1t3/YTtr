@@ -20,16 +20,16 @@ yt_api_Key = os.environ.get('YOUTUBE_API_KEY', '')
 @app.route('/summarize', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def summarize():
-       
-    if request.method == 'OPTIONS':
-        # Handle preflight request
-        response = jsonify()
-        response.headers.add('Access-Control-Allow-Origin', 'chrome-extension://fkcjlbfohcfcfhjbbbjgjcedepjmmdgh')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
-        return response
+    with app.test_request_context():   
+        if request.method == 'OPTIONS':
+            # Handle preflight request
+            response = jsonify()
+            response.headers.add('Access-Control-Allow-Origin', 'chrome-extension://fkcjlbfohcfcfhjbbbjgjcedepjmmdgh')
+            response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+            response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            return response
             
-    try:
+        try:
             video_url = request.json['url']
             
             # Extract video ID from URL
@@ -88,7 +88,7 @@ def summarize():
 
                 yield f"data: {summary}\n\n"
 
-    except Exception as e:
+        except Exception as e:
             app.logger.error(f"Error in summarize: {e}")
             return jsonify({"error": str(e)}), 500
 
