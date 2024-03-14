@@ -68,26 +68,26 @@ def summarize():
 
                 Please provide your summary in the specified format.
                 """
-
-                summary = ""
-
                 try:
-                    response = client.messages.create(
-                        model="claude-3-haiku-20240307",
+                    summary = ""
+                    with client.messages.stream(
                         max_tokens=4000,
                         messages=[{"role": "user", "content": prompt}],
-                        stream=True
-                    )
+                        model="claude-3-haiku-20240307",
+                    ) as stream:
+                        for text in stream.text_stream:
+                            print(text, end="", flush=True)
+                
+                    for chunk in stream.text_stream:
+                        summary += chunk.text
+                        yield f"data: {summary}\n\n"
+
+                    yield f"data: {summary}\n\n"
+
                 except Exception as e:
                     app.logger.error(f"Error calling Claude API: {e}")
                     return jsonify({"error": str(e)}), 500
-
-                for chunk in response.content:
-                    summary += chunk.text
-                    yield f"data: {summary}\n\n"
-
-                yield f"data: {summary}\n\n"
-
+                
         except Exception as e:
             app.logger.error(f"Error in summarize: {e}")
             return jsonify({"error": str(e)}), 500
