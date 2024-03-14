@@ -76,13 +76,8 @@ def summarize():
                         model="claude-3-haiku-20240307",
                     ) as stream:
                         for text in stream.text_stream:
-                            print(text, end="", flush=True)
-                
-                    for chunk in stream.text_stream:
-                        summary += chunk.text
-                        yield f"data: {summary}\n\n"
-
-                    yield f"data: {summary}\n\n"
+                            summary += text
+                            yield f"data: {summary}\n\n"
 
                 except Exception as e:
                     app.logger.error(f"Error calling Claude API: {e}")
