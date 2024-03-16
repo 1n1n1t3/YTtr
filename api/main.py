@@ -55,15 +55,14 @@ video.
 a) Abstractive summarization (rephrasing key points in your own words)
 b) Extractive summarization (selectively pulling out the most important quotes from the transcript)
 3. For each key point you include in the summary, include the relevant timestamp from the transcript
-in brackets (e.g. [1:23:45]) to indicate which part of the video it corresponds to.
+in brackets (e.g. [mm:ss]) to indicate which part of the video it corresponds to. Use only the starting point.
 4. Organize the summary in a clear, logical way, with one paragraph per main topic or section of the
 video. Use headings to delineate different sections if appropriate.
 5. Make sure the summary is well-formatted and easy to read. Use proper grammar and punctuation. Use new lines and bolded text for headers.
 
 Please note: The summary should NOT include the full transcript, only the main points and takeaways
-in a condensed form. The goal is to convey the essential information from the video in a concise
-way.
-        """
+in a condensed form. The goal is to convey the essential information from the video in a concise way so the user won't need to watch the whole video to extract the information from it.
+"""
         
         # Call Claude API to summarize video
         response = client.messages.create(
