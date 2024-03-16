@@ -40,32 +40,29 @@ def summarize():
     if video_details:
         # Prepare prompt for Claude model
         prompt = f"""
-        You are an AI assistant tasked with summarizing YouTube video transcripts. Your goal is to provide a concise summary of the main points discussed in the video, along with the corresponding timestamps.
+Here is the transcript of a video, with timestamps preceding the spoken text:
 
-        Here are the details of the video you need to summarize:
+<transcript>
+{video_details['transcript']}
+</transcript>
 
-        Title: {video_details['title']}
-        Channel: {video_details['channel']}
-        Views: {video_details['views']}
-        Likes: {video_details['likes']}
+Your task is to create a comprehensive summary of the video based on this transcript.
 
-        Transcript:
-        {video_details['transcript']}
+To create the summary, follow these steps:
+1. Read through the transcript carefully to understand the key points and overall narrative of the
+video.
+2. Use a blended summary technique that combines:
+a) Abstractive summarization (rephrasing key points in your own words)
+b) Extractive summarization (selectively pulling out the most important quotes from the transcript)
+3. For each key point you include in the summary, include the relevant timestamp from the transcript
+in brackets (e.g. [1:23:45]) to indicate which part of the video it corresponds to.
+4. Organize the summary in a clear, logical way, with one paragraph per main topic or section of the
+video. Use headings to delineate different sections if appropriate.
+5. Make sure the summary is well-formatted and easy to read. Use proper grammar and punctuation. Use new lines and bolded text for headers.
 
-        Instructions:
-        1. Read through the entire transcript carefully to understand the main topics and key points discussed.
-        2. Identify the most important and relevant points from the transcript.
-        3. The provided transcript has timestamps in this format [h:mm:ss.ms]
-        4. For each main point, provide a brief summary (1-2 short sentences) and include the corresponding timestamp in the format [mm:ss].
-        5. Present the summary in a clear and organized manner, with each main point on a new line.
-
-        Example output format:
-        [mm:ss] First main point summary.
-        [mm:ss] Second main point summary.
-        [mm:ss] Third main point summary.
-        ...
-
-        Please provide your summary in the specified format.
+Please note: The summary should NOT include the full transcript, only the main points and takeaways
+in a condensed form. The goal is to convey the essential information from the video in a concise
+way.
         """
         
         # Call Claude API to summarize video
