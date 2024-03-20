@@ -38,8 +38,7 @@ def summarize():
 
     if video_details:
         # Prepare prompt for Claude model
-        prompt = f"""
-Here are the details and transcript for a YouTube video followed by the instructions you need to
+        prompt = f"""Here are the details and transcript for a YouTube video followed by the instructions you need to
 follow:
 <video_details>
 Channel name: {video_details['channel']}
@@ -89,8 +88,8 @@ Structure and format the summary:
 Generate clickable timestamp links for each claim, quote, or section header:
 - Find the closest prior timestamp to the start of the relevant transcript section
 - For multi-line quotes, use the first line's timestamp
-- Add a 4 second (t=t-4) buffer before the target timestamp
-- For very short sections, link 2 seconds (t=t-2) earlier for more context
+- Add a 2 second (t=t-2) buffer before the target timestamp
+- For very short sections, link 1 seconds (t=t-1) earlier for more context
 - Format links as [H:MM:SS]({video_url}&t=X) where X is the number of elapsed seconds from the
 start of the video to that timestamp.
 To calculate X with precision:
