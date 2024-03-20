@@ -38,86 +38,61 @@ def summarize():
 
     if video_details:
         # Prepare prompt for Claude model
-        prompt = f"""Here are the details and transcript for a YouTube video followed by the instructions you need to follow:
-
+        prompt = f"""
 <video_details>
 Channel name: {video_details['channel']}
 Video title: {video_details['title']} 
 View count: {video_details['views']}
 Likes count: {video_details['likes']}
 Video URL: {video_url}
-Transcript:
+Transcript: 
 {video_details['transcript']}
 </video_details>
 
-Your task is to provide a comprehensive summary of this video that will allow someone to learn the most important information presented without having to watch the full video. The summary should be of varying length depending on the length of the video.
+Instructions:
+1. Carefully analyze the target audience for this video topic. Consider their demographics, prior knowledge, pain points, goals, and preferred communication style. Tailor the summary's tone, depth, examples, and language to best resonate with that audience.
 
-It is crucial that the timestamp links you generate are precisely aligned with the corresponding sections in the video transcript. Inaccurate timestamp links will significantly diminish the usefulness of the summary.
+2. Identify the main sections or chapters in the video based on topic transitions. Note down the exact start and end timestamps for each section in HH:MM:SS format. Determine the most logical order to present the sections in the summary.
 
-First, carefully analyze the target audience for this video topic:
-- Consider their demographics, prior knowledge, pain points, goals, and preferred communication style
-- Tailor the summary's tone, depth, examples, and language to best resonate with that audience  
+3. Create an outline that mirrors the video's structure:
+- Use the main video sections as the top-level ## H1 headings 
+- Add key sub-points under each section as ### H2 headings
+- Aim for 1 sub-point per 2-3 minutes of video, adjusting for content density
 
-Next, analyze the structure and flow of the video based on the transcript:
-- Identify the main sections or chapters based on topic transitions
-- Note the timestamps where each new section begins and ends
-- Determine the most logical order for the sections
-
-Create an outline for the summary that mirrors the video's structure:
-- Use the main video sections as the top-level outline points
-- Add key sub-points under each section
-- Aim for at least one sub-point per 2-3 minutes of video, adjusting for density
-
-When writing the summary based on the outline:
-- Dedicate 1-3 sentences to each outline sub-point to concisely capture the main ideas
-- Avoid skipping points - aim to cover the outline comprehensively and evenly
-- Summarize tangents more briefly than core points  
+4. Write the summary following this outline:
+- Dedicate 1-3 concise sentences to each H2 sub-point to capture the main ideas
+- Cover all points comprehensively and evenly, avoiding skipping any
+- Summarize tangents more briefly than core points 
 - Use 80% abstractive summarization in your own words
 - Use 20% extractive summarization of impactful direct quotes
+- Bold a few key terms or phrases in each section
 
-Structure and format the summary:
-- Begin with a 1-2 sentence overview of the main topic and key takeaways
-- Use ## H2 and ### H3 headings to organize sections
-- Apply a combination of numbered and non-numbered bullet points for lists
-- Bold key terms and phrases sparingly
-- Use blockquotes for direct transcript quotes on their own line:
+5. Generate precise clickable timestamp links for each heading, claim, or quote:
+- Note down the exact HH:MM:SS timestamp from the start of the relevant sentence and/or section
+- Convert HH:MM:SS to total elapsed seconds (e.g. 00:05:30 = 330 seconds)
+- Append &t=[seconds] to the end of the video URL 
+- Wrap the timestamp in square brackets and make it a clickable link:
+[HH:MM:SS]({video_url}&t=[seconds])
+
+6. Begin with a 1-2 sentence overview of the video's main topic and key takeaways.
+
+7. Use blockquotes for any direct transcript quotes on their own line:
 > Like this example blockquote formatting.
-- Provide 2-4 summary sentences after each heading
 
-To calculate the timestamp for a section:
-- Identify the start and end times of the section from the transcript
-- Convert the start time to total elapsed seconds from the video start (hours * 3600 + minutes * 60 + seconds)  
-- Subtract a few seconds (e.g. 2-4) from this total to provide context before the section starts
-- Format the timestamp link as [H:MM:SS]({video_url}&t=X) where X is the adjusted total elapsed seconds
+8. Provide 2-4 summary sentences after each H1 or H2 heading.
 
-Generate clickable timestamp links for each claim, quote, or section header:
-- Find the closest prior timestamp to the start of the relevant transcript section 
-- For multi-line quotes, use the first line's timestamp
-- Add a 4 second (t=t-4) buffer before the target timestamp
-- For very short sections, link 2 seconds (t=t-2) earlier for more context
-
-After generating the summary with timestamp links, carefully review each link by:
-- Opening the video URL with the timestamp parameter
-- Verifying that the video playback starts at the intended point, slightly before the referenced section
-- If not, recalculate and update the timestamp link
-
-Generate an initial draft of the summary with timestamp links. Then go through multiple rounds of verifying and correcting the links before finalizing the summary. Ensure you follow the specified formatting for timestamp links consistently throughout the summary.
-
-Optimize the summary through revisions:
-- Vary sentence structures for better flow
-- Ensure smooth section transitions 
+9. Revise the summary to optimize the writing:
+- Vary sentence structures for better flow 
+- Ensure smooth transitions between sections
 - Maintain a consistent voice and tone
 - Balance abstraction and direct quotes
-- Trim redundancies and non-essential info
-- Point out anything that requires watching the video to make sense
+- Flag anything that requires watching the video to fully make sense
 
-Conclude with 3-4 key actionable takeaways, each with:
+10. Conclude with key actionable takeaways, each specifying:  
 - What: The specific insight or recommendation
 - Why: The importance and benefit
 - How: Steps to put it into practice
-Phrase them as memorable action statements.
-
-The goal is an engaging, standalone summary that efficiently conveys the video's core information in less time than watching the full video."""
+Phrase them as memorable action statements."""
         
 
         return jsonify({"prompt": str(prompt)})
