@@ -1,6 +1,5 @@
 requests
 youtube-transcript-api
- re
- pyperclip
- pyautogui
- keyboard
+flask
+flask_cors
+re
