@@ -38,11 +38,11 @@ def summarize():
 
     if video_details:
         # Prepare prompt for Claude model
-        prompt = f"""Here are the details and transcript for a YouTube video followed by the instructions you need to
-follow:
+        prompt = f"""Here are the details and transcript for a YouTube video followed by the instructions you need to follow:
+
 <video_details>
 Channel name: {video_details['channel']}
-Video title: {video_details['title']}
+Video title: {video_details['title']} 
 View count: {video_details['views']}
 Likes count: {video_details['likes']}
 Video URL: {video_url}
@@ -50,14 +50,13 @@ Transcript:
 {video_details['transcript']}
 </video_details>
 
-Your task is to provide a comprehensive summary of this video that will allow someone to learn the
-most important information presented without having to watch the full video. The summary should be
-of varying length depending on the length of the video.
+Your task is to provide a comprehensive summary of this video that will allow someone to learn the most important information presented without having to watch the full video. The summary should be of varying length depending on the length of the video.
+
+It is crucial that the timestamp links you generate are precisely aligned with the corresponding sections in the video transcript. Inaccurate timestamp links will significantly diminish the usefulness of the summary.
 
 First, carefully analyze the target audience for this video topic:
-- Consider their demographics, prior knowledge, pain points, goals, and preferred communication
-style
-- Tailor the summary's tone, depth, examples, and language to best resonate with that audience
+- Consider their demographics, prior knowledge, pain points, goals, and preferred communication style
+- Tailor the summary's tone, depth, examples, and language to best resonate with that audience  
 
 Next, analyze the structure and flow of the video based on the transcript:
 - Identify the main sections or chapters based on topic transitions
@@ -72,7 +71,7 @@ Create an outline for the summary that mirrors the video's structure:
 When writing the summary based on the outline:
 - Dedicate 1-3 sentences to each outline sub-point to concisely capture the main ideas
 - Avoid skipping points - aim to cover the outline comprehensively and evenly
-- Summarize tangents more briefly than core points
+- Summarize tangents more briefly than core points  
 - Use 80% abstractive summarization in your own words
 - Use 20% extractive summarization of impactful direct quotes
 
@@ -85,22 +84,28 @@ Structure and format the summary:
 > Like this example blockquote formatting.
 - Provide 2-4 summary sentences after each heading
 
+To calculate the timestamp for a section:
+- Identify the start and end times of the section from the transcript
+- Convert the start time to total elapsed seconds from the video start (hours * 3600 + minutes * 60 + seconds)  
+- Subtract a few seconds (e.g. 2-4) from this total to provide context before the section starts
+- Format the timestamp link as [H:MM:SS]({video_url}&t=X) where X is the adjusted total elapsed seconds
+
 Generate clickable timestamp links for each claim, quote, or section header:
-- Find the closest prior timestamp to the start of the relevant transcript section
+- Find the closest prior timestamp to the start of the relevant transcript section 
 - For multi-line quotes, use the first line's timestamp
 - Add a 4 second (t=t-4) buffer before the target timestamp
 - For very short sections, link 2 seconds (t=t-2) earlier for more context
-- Format links as [H:MM:SS]({video_url}&t=X) where X is the number of elapsed seconds from the
-start of the video to that timestamp.
-To calculate X with precision:
-1. Note down the timestamp in this format: H:MM:SS like 0:14:16
-2. Convert the hours, minutes, and seconds to total elapsed seconds (e.g., 0 hours, 14 minutes, and
-16 seconds equals 856 seconds total).
-3. Append &t=X to the end of the video URL, replacing X with the total elapsed seconds.
+
+After generating the summary with timestamp links, carefully review each link by:
+- Opening the video URL with the timestamp parameter
+- Verifying that the video playback starts at the intended point, slightly before the referenced section
+- If not, recalculate and update the timestamp link
+
+Generate an initial draft of the summary with timestamp links. Then go through multiple rounds of verifying and correcting the links before finalizing the summary. Ensure you follow the specified formatting for timestamp links consistently throughout the summary.
 
 Optimize the summary through revisions:
 - Vary sentence structures for better flow
-- Ensure smooth section transitions
+- Ensure smooth section transitions 
 - Maintain a consistent voice and tone
 - Balance abstraction and direct quotes
 - Trim redundancies and non-essential info
@@ -112,7 +117,7 @@ Conclude with 3-4 key actionable takeaways, each with:
 - How: Steps to put it into practice
 Phrase them as memorable action statements.
 
-The goal is an engaging, standalone summary that efficiently conveys the video's core information in less time than watching the full video. """
+The goal is an engaging, standalone summary that efficiently conveys the video's core information in less time than watching the full video."""
         
 
         return jsonify({"prompt": str(prompt)})
