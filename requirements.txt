@@ -1,5 +1,6 @@
-flask
-flask-cors 
-anthropic
 requests
 youtube-transcript-api
+ re
+ pyperclip
+ pyautogui
+ keyboard
