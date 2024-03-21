@@ -66,7 +66,7 @@ Aim to cover the main sections evenly, with the total summary length being 20-30
 length.
 
 4. Use a mix of abstractive summarization (70-90%) and direct quotes from the transcript (10-30%).
-Adjust this ratio as needed based on the type of content.
+Adjust this ratio as needed based on the type of content. Try to cover the full transcript and not leave gaps.
 
 5. Organize the summary clearly using H2 and H3 subheadings as appropriate. Use bullet points to
 break up long paragraphs or list items. Bold key terms. Use blockquotes for longer direct
