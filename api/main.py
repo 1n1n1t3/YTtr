@@ -51,60 +51,45 @@ Transcript:
 
 The video URL is: {video_url}
 
-Please carefully review the video details above, paying special attention to the full transcript.
-Then, provide a comprehensive written summary of the video following these steps:
+Please carefully review the video details above, paying special attention to the full transcript. Then, provide a comprehensive written summary of the video following these steps:
 
-1. Analyze the likely target audience for this video based on the topic. Consider their goals, pain
-points, and level of familiarity with the subject. Tailor the tone and content of your summary to
-resonate with this audience.
+1. Analyze the likely target audience for this video based on the topic. Consider their goals, pain points, and level of familiarity with the subject. Tailor the tone and content of your summary to resonate with this audience on an emotional level, using persuasive language where appropriate.
 
-2. Identify the main sections or topics covered in the video based on the transcript. Use these to
-outline your summary, creating an H1 heading for each main section.
+2. Break down the video transcript into a chain of key sections or topics. Use these to logically structure your summary, creating an H1 heading for each main point in the chain of reasoning. 
 
-3. Under each H1 section heading, write 1-3 sentences summarizing the key points in that section.
-Aim to cover the main sections evenly, with the total summary length being 20-30% of the full video
-length.
+3. Under each H1 section heading, write 1-3 sentences concisely summarizing the essential information from that section. Aim for an even coverage of the main points, with the total summary length being 20-30% of the full video length.
 
-4. Use a mix of abstractive summarization (70-90%) and direct quotes from the transcript (10-30%).
-Adjust this ratio as needed based on the type of content. Try to cover the full transcript and not leave gaps.
+4. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
-5. Organize the summary clearly using H2 and H3 subheadings as appropriate. Use bullet points to
-break up long paragraphs or list items. Bold key terms. Use blockquotes for longer direct
-quotations.
+5. Organize the summary clearly using H2 and H3 subheadings as appropriate to reinforce the logical flow. Utilize bullet points to enhance readability of longer paragraphs or list items. Selectively bold key terms for emphasis. Use blockquotes to highlight longer verbatim quotations.
 
-6. Generate clickable timestamp links for each section header and key point or quote used. Append them after the text. To
-calculate the timestamp link:
-a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16)
+6. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link:
+
+a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
 b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
-c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total)
-d. Substract 2 seconds to add buffer for the user between opening the link and hearing what they are supposed to (e.g. 856 - 2 = 854)
+c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total) 
+d. Subtract 2 seconds to add buffer for the user between opening the link and hearing the intended content (e.g. 856 - 2 = 854)
 e. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=854)
 f. Format the full link as: [H:MM:SS]({video_url}&t=X)
 
-It is very important to pick accurate starting timestamps for the links. For example, consider
-the following transcript excerpt:
-0:01:42 We thought why don't we
+It is crucial to select precise starting timestamps for the links. For example, consider the following transcript excerpt:
+
+0:01:42 We thought why don't we 
 0:01:44 build a company to go solve problems
-0:01:48 that a normal computer can't and so that
+0:01:48 that a normal computer can't and so that 
 0:01:51 that became the company's mission to go
 0:01:53 build a computer the type of computers
-0:01:55 and solve problems that normal computers
+0:01:55 and solve problems that normal computers 
 0:01:57 can't and to this day we're focused on
 0:01:59 that
 
-The correct starting timestamp for the quote "We thought why don't we build a company to go solve
-problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the
-transcript. However applying the rule from 6.d. you'll substract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
+The correct starting timestamp for the quote "We thought why don't we build a company to go solve problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the transcript. However, applying the rule from 6.d. you'll subtract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
 
-7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
-between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
-original video.
+7. Vary the sentence structures throughout to maintain an engaging narrative flow. Ensure smooth transitions between sentences and sections. Adopt a consistent voice aligned with the original video's tone.
 
-8. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these
-on the What, Why and How of the video's key messages.
+8. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these on the What, Why and How of the video's key messages. Frame them persuasively to inspire the reader to act on the insights.
 
-9. Revise the full summary, checking for any unintentional bias or editorializing. Aim to neutrally
-represent the content of the original video.
+9. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
 
 Provide your final video summary."""
         
