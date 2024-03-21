@@ -51,8 +51,8 @@ Transcript:
 
 The video URL is: {video_url}
 
-Please carefully review the video details, paying special attention to the full transcript. Then,
-provide a comprehensive written summary of the video following these steps:
+Please carefully review the video details above, paying special attention to the full transcript.
+Then, provide a comprehensive written summary of the video following these steps:
 
 1. Analyze the likely target audience for this video based on the topic. Consider their goals, pain
 points, and level of familiarity with the subject. Tailor the tone and content of your summary to
@@ -80,37 +80,22 @@ c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total)
 d. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=856)
 e. Format the full link as: [H:MM:SS]({video_url}&t=X)
 
-6a. It is very important to pick accurate starting timestamps for the links. For example, consider the following transcript:
-[0:01:28] did that very well
-[0:01:30] and so anyways we got together and it
-[0:01:32] was during the microprocessor Revolution
-[0:01:34] this is 1993 in 1992 when we were
-[0:01:37] getting together the PC Revolution was
-[0:01:39] just getting going it was pretty clear
-[0:01:41] the microprocessor was going to be very
-[0:01:42] important and we thought why don't we
+It is very important to pick accurate starting timestamps for the links. For example, consider
+the following transcript excerpt:
+[0:01:42] We thought why don't we
 [0:01:44] build a company to go solve problems
 [0:01:48] that a normal computer can't and so that
 [0:01:51] that became the company's mission to go
 [0:01:53] build a computer the type of computers
 [0:01:55] and solve problems that normal computers
 [0:01:57] can't and to this day we're focused on
-[0:01:59] that and if you look at all the problems
-[0:02:01] that that in the markets that we opened
-[0:02:03] up as a result things like computational
-[0:02:06] drug design weather simulation materials
-[0:02:09] design these are all things that we're
-[0:02:10] really proud of Robotics uh self-driving
+[0:01:59] that
 
-Example 1 - The quote:
->We thought why don't we build a company to go solve problems that a normal computer can't and so that that became the company's mission to go build a computer the type of computers and solve problems that normal computers can't and to this day we're focused on that.
-starts at [0:01:42], because it is at that timestamp in the transcript that the first word of the quote "We" is found.
-Example 2 - The quote:
->it was during the microprocessor Revolution this is 1993 in 1992
-starts at [0:01:30], because it is at that timestamp in the transcript that the first word of the quote "it" is found.
-Example 3 - The quote:
->really proud of Robotics
-starts at [0:02:10], because it is at that timestamp in the transcript that the first word of the quote "really" is found.
+The correct starting timestamp for the quote "We thought why don't we build a company to go solve
+problems that a normal computer can't and so that that became the company's mission to go build a
+computer the type of computers and solve problems that normal computers can't and to this day we're
+focused on that" would be [0:01:42], because that is when the first word "We" appears in the
+transcript.
 
 7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
 between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
@@ -120,7 +105,9 @@ original video.
 on the What, Why and How of the video's key messages.
 
 9. Revise the full summary, checking for any unintentional bias or editorializing. Aim to neutrally
-represent the content of the original video."""
+represent the content of the original video.
+
+Provide your final video summary."""
         
 
         return jsonify({"prompt": str(prompt)})
