@@ -108,12 +108,13 @@ starts at [0:01:42], because it is at that timestamp in the transcript that the 
 Example 2 - The quote:
 >it was during the microprocessor Revolution this is 1993 in 1992
 starts at [0:01:30], because it is at that timestamp in the transcript that the first word of the quote "it" is found.
-7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
-between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
-original video.
 Example 3 - The quote:
 >really proud of Robotics
 starts at [0:02:10], because it is at that timestamp in the transcript that the first word of the quote "really" is found.
+
+7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
+between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
+original video.
 
 8. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these
 on the What, Why and How of the video's key messages.
