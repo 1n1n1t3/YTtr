@@ -38,36 +38,58 @@ def summarize():
 
     if video_details:
         # Prepare prompt for Claude model
-        prompt = f"""<video_details>
+        prompt = f"""Here are the details for the video to summarize:
+
+<video_details>
 Channel name: {video_details['channel']}
 Video title: {video_details['title']}
 View count: {video_details['views']}
 Likes count: {video_details['likes']}
-Video URL: {video_url}
-Transcript: {video_details['transcript']}
+Transcript: 
+{video_details['transcript']}
 </video_details>
-<instructions>
-Provide a comprehensive summary of this video to convey the most important information without watching the full video. 
-- Aim for a summary length of 20-30% of the video length.
-- Analyze the target audience's likely goals and pain points based on the topic.
-- Tailor the tone and content to resonate with that audience.
-- Identify the main sections and outline the summary based on the video structure. Use H1 heading for these.
-- Dedicate 1-3 sentences to each sub-point, covering the outline evenly.
-- Use 70-90% abstractive summarization and 10-30% direct quotes, adjusting for content type.
-- Organize with H2 and H3 headings, bullet points, bolded terms, and blockquotes.
-- Generate clickable timestamp links for each section header, key point, or quote.
-To calculate timestamp links:
-1. Diligently note down the starting point of the relevant timestamp in H:MM:SS format (e.g., 0:14:16).
-2. Carefully convert hours and minutes to seconds (e.g., 14 minutes = 14 * 60 = 840 seconds).
-3. Add the remaining seconds (e.g., 840 + 16 = 856 seconds total).
-4. Subtract 2 seconds (e.g., 856 - 4 = 854).
-6. Append &t=X to the video URL, replacing X with the final total seconds (e.g., &t=852).
-7. Format the full link as [H:MM:SS]({video_url}&t=X).
-- Vary sentence structures, ensure smooth transitions, and maintain consistent voice .
-- Conclude with 2-4 actionable and concise takeaways focused on Whatmm Why and How .
-- During revisions, check for unintentional bias or editorializing.
-- Represent the video content neutrally.
-</instructions>"""
+
+The video URL is: {video_url}
+
+Please carefully review the video details, paying special attention to the full transcript. Then,
+provide a comprehensive written summary of the video following these steps:
+
+1. Analyze the likely target audience for this video based on the topic. Consider their goals, pain
+points, and level of familiarity with the subject. Tailor the tone and content of your summary to
+resonate with this audience.
+
+2. Identify the main sections or topics covered in the video based on the transcript. Use these to
+outline your summary, creating an H1 heading for each main section.
+
+3. Under each H1 section heading, write 1-3 sentences summarizing the key points in that section.
+Aim to cover the main sections evenly, with the total summary length being 20-30% of the full video
+length.
+
+4. Use a mix of abstractive summarization (70-90%) and direct quotes from the transcript (10-30%).
+Adjust this ratio as needed based on the type of content.
+
+5. Organize the summary clearly using H2 and H3 subheadings as appropriate. Use bullet points to
+break up long paragraphs or list items. Bold key terms. Use blockquotes for longer direct
+quotations.
+
+6. Generate clickable timestamp links for each section header and key point or quote used. To
+calculate the timestamp link:
+a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16)
+b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
+c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total)
+d. Subtract 2 seconds to account for any slight misalignment (e.g. 856 - 2 = 854)
+e. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=854)
+f. Format the full link as: [H:MM:SS]({video_url}&t=X)
+
+7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
+between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
+original video.
+
+8. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these
+on the What, Why and How of the video's key messages.
+
+9. Revise the full summary, checking for any unintentional bias or editorializing. Aim to neutrally
+represent the content of the original video."""
         
 
         return jsonify({"prompt": str(prompt)})
