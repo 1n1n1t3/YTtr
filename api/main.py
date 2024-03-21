@@ -77,8 +77,9 @@ calculate the timestamp link:
 a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16)
 b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
 c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total)
-d. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=856)
-e. Format the full link as: [H:MM:SS]({video_url}&t=X)
+d. Substract 2 seconds to add buffer for the user between opening the link and hearing what they are supposed to (e.g. 856 - 2 = 854)
+e. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=854)
+f. Format the full link as: [H:MM:SS]({video_url}&t=X)
 
 It is very important to pick accurate starting timestamps for the links. For example, consider
 the following transcript excerpt:
