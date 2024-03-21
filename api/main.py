@@ -72,7 +72,7 @@ Adjust this ratio as needed based on the type of content.
 break up long paragraphs or list items. Bold key terms. Use blockquotes for longer direct
 quotations.
 
-6. Generate clickable timestamp links for each section header and key point or quote used. To
+6. Generate clickable timestamp links for each section header and key point or quote used. Append them after the text. To
 calculate the timestamp link:
 a. Note down the starting point of the relevant part of the video in [H:MM:SS] format (e.g. [0:14:16])
 b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
