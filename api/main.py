@@ -96,7 +96,7 @@ The correct starting timestamp for the quote "We thought why don't we build a co
 problems that a normal computer can't and so that that became the company's mission to go build a
 computer the type of computers and solve problems that normal computers can't and to this day we're
 focused on that" would be [0:01:42], because that is when the first word "We" appears in the
-transcript.
+transcript. However applying the rule from 6d you'll substract 2 seconds and the timestamp becomes [0:01:40] which calculated to seconds is t=100.
 
 7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
 between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
