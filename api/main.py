@@ -48,24 +48,25 @@ Transcript: {video_details['transcript']}
 </video_details>
 <instructions>
 Provide a comprehensive summary of this video to convey the most important information without watching the full video. 
-- Aim for a summary length of 20-30% of the video length
-- Analyze the target audience's likely goals and pain points based on the topic
-- Tailor the tone and content to resonate with that audience
-- Identify the main sections and outline the summary based on the video structure
-- Dedicate 1-3 sentences to each sub-point, covering the outline evenly
-- Use 70-90% abstractive summarization and 10-30% direct quotes, adjusting for content type
-- Organize with H2 and H3 headings, bullet points, bolded terms, and blockquotes
-- Generate clickable timestamp links for each section header, key point, or quote
+- Aim for a summary length of 20-30% of the video length.
+- Analyze the target audience's likely goals and pain points based on the topic.
+- Tailor the tone and content to resonate with that audience.
+- Identify the main sections and outline the summary based on the video structure. Use H1 heading for these.
+- Dedicate 1-3 sentences to each sub-point, covering the outline evenly.
+- Use 70-90% abstractive summarization and 10-30% direct quotes, adjusting for content type.
+- Organize with H2 and H3 headings, bullet points, bolded terms, and blockquotes.
+- Generate clickable timestamp links for each section header, key point, or quote.
 To calculate timestamp links:
-1. Note down the starting relevant timestamp in H:MM:SS format (e.g., 0:14:16)
-2. Convert hours and minutes to seconds (e.g., 14 minutes = 14 * 60 = 840 seconds)
-3. Add the remaining seconds (e.g., 840 + 16 = 856 seconds total)
-6. Append &t=X to the video URL, replacing X with the final total seconds (e.g., &t=852)
-7. Format the full link as [H:MM:SS]({video_url}&t=X)
-- Vary sentence structures, ensure smooth transitions, and maintain consistent voice 
-- Conclude with 2-4 actionable takeaways focused on What and Why, adding How if concise
-- During revisions, check for unintentional bias or editorializing
-- Represent the video content neutrally
+1. Diligently note down the starting point of the relevant timestamp in H:MM:SS format (e.g., 0:14:16).
+2. Carefully convert hours and minutes to seconds (e.g., 14 minutes = 14 * 60 = 840 seconds).
+3. Add the remaining seconds (e.g., 840 + 16 = 856 seconds total).
+4. Subtract 2 seconds (e.g., 856 - 4 = 854).
+6. Append &t=X to the video URL, replacing X with the final total seconds (e.g., &t=852).
+7. Format the full link as [H:MM:SS]({video_url}&t=X).
+- Vary sentence structures, ensure smooth transitions, and maintain consistent voice .
+- Conclude with 2-4 actionable and concise takeaways focused on Whatmm Why and How .
+- During revisions, check for unintentional bias or editorializing.
+- Represent the video content neutrally.
 </instructions>"""
         
 
