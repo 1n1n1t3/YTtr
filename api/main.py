@@ -57,10 +57,9 @@ Provide a comprehensive summary of this video to convey the most important infor
 - Organize with H2 and H3 headings, bullet points, bolded terms, and blockquotes
 - Generate clickable timestamp links for each section header, key point, or quote
 To calculate timestamp links:
-1. Note down the relevant timestamp in H:MM:SS format (e.g., 0:14:16)
+1. Note down the starting relevant timestamp in H:MM:SS format (e.g., 0:14:16)
 2. Convert hours and minutes to seconds (e.g., 14 minutes = 14 * 60 = 840 seconds)
 3. Add the remaining seconds (e.g., 840 + 16 = 856 seconds total)
-4. Subtract 4 seconds (e.g., 856 - 4 = 852)
 6. Append &t=X to the video URL, replacing X with the final total seconds (e.g., &t=852)
 7. Format the full link as [H:MM:SS]({video_url}&t=X)
 - Vary sentence structures, ensure smooth transitions, and maintain consistent voice 
