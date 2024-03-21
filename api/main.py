@@ -81,6 +81,32 @@ d. Subtract 2 seconds to account for any slight misalignment (e.g. 856 - 2 = 854
 e. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=854)
 f. Format the full link as: [H:MM:SS]({video_url}&t=X)
 
+6a. It is very important to pick accurate starting timestamps for the links. For example, consider the following transcript:
+[0:01:28] did that very well
+[0:01:30] and so anyways we got together and it
+[0:01:32] was during the microprocessor Revolution
+[0:01:34] this is 1993 in 1992 when we were
+[0:01:37] getting together the PC Revolution was
+[0:01:39] just getting going it was pretty clear
+[0:01:41] the microprocessor was going to be very
+[0:01:42] important and we thought why don't we
+[0:01:44] build a company to go solve problems
+[0:01:48] that a normal computer can't and so that
+[0:01:51] that became the company's mission to go
+[0:01:53] build a computer the type of computers
+[0:01:55] and solve problems that normal computers
+[0:01:57] can't and to this day we're focused on
+[0:01:59] that and if you look at all the problems
+[0:02:01] that that in the markets that we opened
+[0:02:03] up as a result things like computational
+[0:02:06] drug design weather simulation materials
+[0:02:09] design these are all things that we're
+[0:02:10] really proud of Robotics uh self-driving
+
+The quote:
+>We thought why don't we build a company to go solve problems that a normal computer can't and so that that became the company's mission to go build a computer the type of computers and solve problems that normal computers can't and to this day we're focused on that.
+starts at [0:01:42], because it is at that timestamp the the first word "We" is found.
+
 7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
 between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
 original video.
