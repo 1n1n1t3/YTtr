@@ -74,7 +74,7 @@ quotations.
 
 6. Generate clickable timestamp links for each section header and key point or quote used. Append them after the text. To
 calculate the timestamp link:
-a. Note down the starting point of the relevant part of the video in [H:MM:SS] format (e.g. [0:14:16])
+a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16)
 b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
 c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total)
 d. Substract 2 seconds to add buffer for the user between opening the link and hearing what they are supposed to (e.g. 856 - 2 = 854)
@@ -83,18 +83,18 @@ f. Format the full link as: [H:MM:SS]({video_url}&t=X)
 
 It is very important to pick accurate starting timestamps for the links. For example, consider
 the following transcript excerpt:
-[0:01:42] We thought why don't we
-[0:01:44] build a company to go solve problems
-[0:01:48] that a normal computer can't and so that
-[0:01:51] that became the company's mission to go
-[0:01:53] build a computer the type of computers
-[0:01:55] and solve problems that normal computers
-[0:01:57] can't and to this day we're focused on
-[0:01:59] that
+0:01:42 We thought why don't we
+0:01:44 build a company to go solve problems
+0:01:48 that a normal computer can't and so that
+0:01:51 that became the company's mission to go
+0:01:53 build a computer the type of computers
+0:01:55 and solve problems that normal computers
+0:01:57 can't and to this day we're focused on
+0:01:59 that
 
 The correct starting timestamp for the quote "We thought why don't we build a company to go solve
-problems that a normal computer can't" would be [0:01:42], because that is when the first word "We" appears in the
-transcript. However applying the rule from 6.d. you'll substract 2 seconds and the timestamp becomes [0:01:40] which calculated to seconds is t=100.
+problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the
+transcript. However applying the rule from 6.d. you'll substract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
 
 7. Vary the sentence structures throughout to keep the writing engaging. Ensure the transitions
 between sentences and sections are smooth. Maintain a consistent voice that matches the tone of the
@@ -136,7 +136,7 @@ def get_video_details(video_id):
         # Fetch transcript with timestamps
         try:
             transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id)
-            transcript_text = '\n'.join([f"[{str(datetime.timedelta(seconds=int(entry['start'])))}] {entry['text']}" for entry in transcript])
+            transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
         except Exception as e:
             print(f"Error fetching transcript: {e}")
             transcript_text = None
