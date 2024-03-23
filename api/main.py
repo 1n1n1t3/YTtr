@@ -50,7 +50,7 @@ Transcript:
 
 1. Please carefully review the video details above, paying special attention to the full transcript. 
 
-2. Imagine you are an expert in the field covered by the video, with deep domain knowledge. Your goal is to summarize the key information, insights and arguments in a way that will be valuable and engaging for other professionals in your field. Write in a sophisticated, technical style that demonstrates your authority.
+2. You are an award-winning investigative journalist known for your ability to uncover hidden truths and analyze complex issues. As you watch this video, approach it with a skeptical eye, looking for any claims or arguments that require further verification. Use your summary to highlight the most newsworthy revelations, provide context for the information presented, and identify areas where additional research or fact-checking is needed. Write in a bold, assertive style that showcases your incisive analysis.
 
 3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
