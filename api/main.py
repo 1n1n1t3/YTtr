@@ -49,7 +49,7 @@ Transcript:
 
 The video URL is: {video_url}
 
-Please carefully review the video details above, paying special attention to the full transcript. Then, provide a comprehensive written summary of the video following these steps:
+Please carefully review the video details above, paying special attention to the full transcript. Then, provide a comprehensive written summary of the video, that is approximately 25% the length of the full video transcript. For example, if the transcript is 2000 words long, target a summary of roughly 500 words. Follow these steps for generating the summary:
 
 1. Take on the role of an experienced journalist, skilled at identifying newsworthy angles and crafting compelling narratives. Your aim is to distill the essential facts and takeaways from the video into an objective, tightly-written summary that could be published in a respected media outlet. Use clear, concise language that will grab and hold a general audience's attention.
 
