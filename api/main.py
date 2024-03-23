@@ -50,21 +50,19 @@ Transcript:
 
 1. Please carefully review the video details above, paying special attention to the full transcript. 
 
-2. Put yourself in the shoes of a diligent student who is summarizing this video as part of an assignment. Your professor will be grading you on how well you capture the central ideas, supporting evidence, and logical flow of the content. Organize the summary clearly, using headings and citations. Demonstrate your understanding while remaining objective and avoiding unsupported opinions.
+2. Imagine you are an expert in the field covered by the video, with deep domain knowledge. Your goal is to summarize the key information, insights and arguments in a way that will be valuable and engaging for other professionals in your field. Write in a sophisticated, technical style that demonstrates your authority.
 
 3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
 4. Aim for lenght of the summary that is approximately 20% the length of the full video transcript. For example, if the transcript is 5000 words long, target a summary of roughly 1000 words. 
 
-5. Sometimes the transcript can have gramatical and/or logical errors due to how the nature of spoken words are translated into transcript by an AI from the video. Try to guess to the best of your knowlege what the correct words and meaning is given the context.
+5. Break down the summary into a chain of key sections or topics. Use these to logically structure it, creating an H1 heading for each main point in the chain of reasoning. 
 
-6. Break down the summary into a chain of key sections or topics. Use these to logically structure it, creating an H1 heading for each main point in the chain of reasoning. 
+6. Under each H1 section heading, write 1-3 sentences concisely summarizing the essential information from that section. Aim for an even coverage of the main points.
 
-7. Under each H1 section heading, write 1-3 sentences concisely summarizing the essential information from that section. Aim for an even coverage of the main points.
+7. Organize the summary clearly using H2 and H3 subheadings as appropriate to reinforce the logical flow. Utilize bullet points to enhance readability of longer paragraphs or list items. Selectively bold key terms for emphasis. Use blockquotes to highlight longer verbatim quotations.
 
-8. Organize the summary clearly using H2 and H3 subheadings as appropriate to reinforce the logical flow. Utilize bullet points to enhance readability of longer paragraphs or list items. Selectively bold key terms for emphasis. Use blockquotes to highlight longer verbatim quotations.
-
-9. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link:
+8. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link:
 
 a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
 b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
@@ -86,13 +84,13 @@ It is crucial to select precise starting timestamps for the links. For example, 
 
 The correct starting timestamp for the quote "We thought why don't we build a company to go solve problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the transcript. However, applying the rule from 6.d. you'll subtract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
 
-10. Vary the sentence structures throughout to maintain an engaging narrative flow. Ensure smooth transitions between sentences and sections. Adopt a consistent voice aligned with the original video's tone.
+9. Vary the sentence structures throughout to maintain an engaging narrative flow. Ensure smooth transitions between sentences and sections. Adopt a consistent voice aligned with the original video's tone.
 
-11. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these on the What, Why and How of the video's key messages. Frame them persuasively to inspire the reader to act on the insights.
+10. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these on the What, Why and How of the video's key messages. Frame them persuasively to inspire the reader to act on the insights.
 
-12. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
+11. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
 
-13. Provide your final video summary."""
+12. Provide your final video summary."""
         
 
         return jsonify({"prompt": str(prompt)})
