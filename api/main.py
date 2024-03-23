@@ -38,9 +38,7 @@ def summarize():
 
     if video_details:
         # Prepare prompt for Claude model
-        prompt = f"""Here are the details for the video to summarize:
-
-<video_details>
+        prompt = f"""<video_details>
 Channel name: {video_details['channel']}
 Video title: {video_details['title']}
 View count: {video_details['views']}
@@ -53,7 +51,7 @@ The video URL is: {video_url}
 
 Please carefully review the video details above, paying special attention to the full transcript. Then, provide a comprehensive written summary of the video following these steps:
 
-1. Analyze the likely target audience for this video based on the topic. Consider their goals, pain points, and level of familiarity with the subject. Tailor the tone and content of your summary to resonate with this audience on an emotional level, using persuasive language where appropriate.
+1. Imagine you are an expert in the field covered by the video, with deep domain knowledge. Your goal is to summarize the key information, insights and arguments in a way that will be valuable and engaging for other professionals in your field. Write in a sophisticated, technical style that demonstrates your authority.
 
 2. Break down the video transcript into a chain of key sections or topics. Use these to logically structure your summary, creating an H1 heading for each main point in the chain of reasoning. 
 
