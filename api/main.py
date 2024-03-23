@@ -50,7 +50,7 @@ Transcript:
 
 1. Please carefully review the video details above, paying special attention to the full transcript. 
 
-2. Take on the role of an experienced journalist, skilled at identifying newsworthy angles and crafting compelling narratives. Your aim is to distill the essential facts and takeaways from the video into an objective, tightly-written summary that could be published in a respected media outlet. Use clear, concise language that will grab and hold a general audience's attention.
+2. Put yourself in the shoes of a diligent student who is summarizing this video as part of an assignment. Your professor will be grading you on how well you capture the central ideas, supporting evidence, and logical flow of the content. Organize the summary clearly, using headings and citations. Demonstrate your understanding while remaining objective and avoiding unsupported opinions.
 
 3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
