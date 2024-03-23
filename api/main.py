@@ -51,7 +51,7 @@ The video URL is: {video_url}
 
 Please carefully review the video details above, paying special attention to the full transcript. Then, provide a comprehensive written summary of the video following these steps:
 
-1. Imagine you are an expert in the field covered by the video, with deep domain knowledge. Your goal is to summarize the key information, insights and arguments in a way that will be valuable and engaging for other professionals in your field. Write in a sophisticated, technical style that demonstrates your authority.
+1. Take on the role of an experienced journalist, skilled at identifying newsworthy angles and crafting compelling narratives. Your aim is to distill the essential facts and takeaways from the video into an objective, tightly-written summary that could be published in a respected media outlet. Use clear, concise language that will grab and hold a general audience's attention.
 
 2. Break down the video transcript into a chain of key sections or topics. Use these to logically structure your summary, creating an H1 heading for each main point in the chain of reasoning. 
 
