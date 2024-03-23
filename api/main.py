@@ -50,7 +50,7 @@ Transcript:
 
 1. Please carefully review the video details above, paying special attention to the full transcript. 
 
-2. You are an experienced reporter. Distill the essential who, what, where, when and why from the video. Attribute all claims using quotes or paraphrases. Rely only on information explicitly provided in the transcript; if key details like the setting or date are unstated, do not speculate or fabricate them. Rigorously fact-check each assertion against the transcript before including it. Adopt an objective, neutral tone and let the speaker's words tell the story. Focus on concisely summarizing the indisputable facts.
+2. As an award-winning journalist, you have a reputation for producing informative and unbiased summaries. Your task is to carefully review the video content and extract the crucial facts, presenting them in a clear and organized manner. Prioritize accuracy and objectivity, allowing the information to speak for itself without editorializing.
 
 3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
