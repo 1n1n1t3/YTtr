@@ -55,7 +55,8 @@ Transcript:
 3. Make a clear distinction between:
 a. presented factual and objective data and information
 b. personal experience, opinions and subjective information 
-Report both, but flag them appropriately so the reader knows which is which. 
+c. information presented as a fact, but might need cross-checking
+Report all three, but flag them appropriately so the reader knows which is which. 
 
 4. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
