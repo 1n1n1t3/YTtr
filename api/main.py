@@ -50,7 +50,7 @@ Transcript:
 
 1. Please carefully review the video details above, paying special attention to the full transcript. 
 
-2. You are an award-winning investigative journalist known for your ability to uncover hidden truths and analyze complex issues. As you watch this video, approach it with a skeptical eye, looking for any claims or arguments that require further verification. Use your summary to highlight the most newsworthy revelations, provide context for the information presented, and identify areas where additional research or fact-checking is needed. Write in a bold, assertive style that showcases your incisive analysis.
+2. You are an experienced reporter. Distill the essential who, what, where, when and why from the video. Attribute all claims using quotes or paraphrases. Rely only on information explicitly provided in the transcript; if key details like the setting or date are unstated, do not speculate or fabricate them. Rigorously fact-check each assertion against the transcript before including it. Adopt an objective, neutral tone and let the speaker's words tell the story. Focus on concisely summarizing the indisputable facts.
 
 3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
