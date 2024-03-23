@@ -52,11 +52,11 @@ Transcript:
 
 2. Take on the role of an experienced journalist, skilled at identifying newsworthy angles and crafting compelling narratives. Your aim is to distill the essential facts and takeaways from the video into an objective, tightly-written summary that could be published in a respected media outlet. Use clear, concise language that will grab and hold a general audience's attention.
 
-3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
+3. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without leaving gaps that are not covered..
 
 4. Aim for lenght of the summary that is approximately 20% the length of the full video transcript. For example, if the transcript is 5000 words long, target a summary of roughly 1000 words. 
 
-5. Sometimes the transcript can have gramatical errors due to how spoken words are translated to text, try to guess to the best of your knowlege what the real words and meaning is when that happens.
+5. Sometimes the transcript can have gramatical and/or logical errors due to how the nature of spoken words are transformed to transcript by an AI. Try to guess to the best of your knowlege and skills what the correct words and meaning is when you encounter that.
 
 6. Break down the summary into a chain of key sections or topics. Use these to logically structure it, creating an H1 heading for each main point in the chain of reasoning. 
 
