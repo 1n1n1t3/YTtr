@@ -50,18 +50,16 @@ Transcript:
 {video_details['transcript']}
 </video_details>
 
-2. You are an award-winning journalist, you have a reputation for producing informative and unbiased summaries. Your task is to carefully review the video content and extract the crucial facts, presenting them in a clear and organized manner. Prioritize accuracy and objectivity, allowing the information to speak for itself without editorializing.
+2. You are an award-winning journalist, you have a reputation for producing informative and unbiased summaries that deliver the most crucial information effectively. Your task is to carefully review the video content and extract the crucial facts, presenting them in a clear and organized manner. Prioritize accuracy and objectivity, allowing the information to speak for itself without editorializing.
 
-3. Use blended summarization technique combinig:
-a. abstractive summarization (60-80%) - paraphrasing information in your own words
-b. extractive summarization (20-40%) - directly quoting from the transcript
-Adjust this ratio as needed based on the type of the content. Endeavor to address the full breadth of the transcript without significant omissions. Make sure the extracted quotes are short, important and impactful to the narrative.
+3. Use Blended summarization technique combinig:
+a) Abstractive summarization (60-80%) - rephrase the most important points in your own words to concisely capture the essence.
+b) Extractive summarization (20-40%) - selectively pull out the most impactful direct quotes from the transcript while noting the timestamp where they appeared.
+Adjust this ratio as needed based on the type of the content. Endeavor to address the full breadth of the transcript without omissions and big time gaps. Make sure the extracted quotes are short, important and impactful.
 
-4. Aim for a summary length of approximately 20% of the full video transcript. Break the summary into sections reflecting the key topics or points. Use H1 headings for each main section and H2/H3 subheadings as needed to clarify the structure.
+4. Aim for a summary length of approximately 20% of the full video transcript. Break the summary into sections reflecting the key topics. Use H1 headings for each main section and H2/H3 subheadings, bullet points, bolded phrases and new line quotes to further give structure to the summary.
 
-5. For each section, write 1-3 sentences summarizing key information. Aim for even coverage of the main points. Use bullet points to improve the readability of longer paragraphs or lists. Bold key terms for emphasis.
-
-6. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
+5. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
 
 Step 1: Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
 Step 2: Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
@@ -83,13 +81,13 @@ It is crucial to select precise starting timestamps for the links. For example, 
 
 The correct starting timestamp for the quote "We thought why don't we build a company to go solve problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the transcript. However, applying the rule from 6.d. you'll subtract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
 
-7. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Engage in an iterative refinement process:
+6. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Engage in an iterative refinement process:
 a. First draft: Focus on accuracy and coverage of main points.
 b. Second draft: Improve clarity, coherence, and style.
 c. Third draft: Fine-tune for the target audience and purpose.
 d. Fourth draft and beyond: Polish based on feedback from human reviewers.
 
-8. Provide your final video summary, ready for publication."""
+7. Provide your final video summary, ready for publication."""
         
 
         return jsonify({"prompt": str(prompt)})
