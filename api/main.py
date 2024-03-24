@@ -61,6 +61,18 @@ Adjust this ratio as needed based on the type of the content.
 
 5. Break the summary into series of hierarchical sections reflecting the key topics and points. Use H1 headings for each main section and H2/H3 subheadings to further give structure to the summary.
 
+Example structure:
+H1 Heading Main Topic 1
+H2 Heading Sub Topic 1.1
+H2 Heading Sub Topic 1.2
+Bullet point statement 1.2.1
+Bullet point statement 1.2.2
+Bullet point statement 1.2.3
+H3 Heading Sub Topic Conclusion
+H1 Heading Main Topic 2
+... etc ...
+
+
 6. Avoid big paragraphs of text and instead aim to cover wider amount of content with concise and impactful information delivery.
 
 7. Quoting can be in two formats:
