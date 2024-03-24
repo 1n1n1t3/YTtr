@@ -65,11 +65,17 @@ b. Directly quote (10-30%) when the original phrasing is particularly clear, imp
 
 Adjust the ratio of paraphrasing to quoting based on the clarity and authority of the original content.
 
-5. Aim for a summary length of approximately 20% of the full video transcript. Break the summary into sections reflecting the key topics or points. Use H1 headings for each main section and H2/H3 subheadings as needed to clarify the structure.
+5. Aim for lenght of the summary that is approximately 20% the length of the full video transcript. For example, if the transcript is 5000 words long, target a summary of roughly 1000 words. 
 
-6. For each section, write 1-3 sentences summarizing the essential information. Aim for even coverage of the main points. Use bullet points to improve the readability of longer paragraphs or lists. Bold key terms for emphasis.
+6. Break down the summary into a chain of key sections or topics. Aim for an even coverage of the main points. Use these to logically structure it, creating an H1 heading for each main point in the chain of reasoning. 
 
-7. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
+7. Under each H1 section heading, write 1-3 sentences concisely summarizing the essential information from that section. 
+
+8. Organize the summary clearly using H2 and H3 subheadings as appropriate to reinforce the logical flow. Utilize bullet points to enhance readability of longer paragraphs or list items. Selectively bold key terms for emphasis. Use blockquotes to highlight longer verbatim quotations.
+
+9. Generate clickable timestamp links for each section header, key point or quote used. Append them after the relevant text. 
+
+To calculate the timestamp link follow these steps:
 
 Step 1: Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
 Step 2: Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
@@ -93,13 +99,13 @@ It is crucial to select precise starting timestamps for the links. For example, 
 The correct starting timestamp for the quote "We thought why don't we build a company to go solve problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the transcript. However, applying the rule from 6.d. you'll subtract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
 </example>
 
-8. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Engage in an iterative refinement process:
+10. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Engage in an iterative refinement process:
 a. First draft: Focus on accuracy and coverage of main points.
 b. Second draft: Improve clarity, coherence, and style.
 c. Third draft: Fine-tune for the target audience and purpose.
 d. Fourth draft and beyond: Polish based on feedback from human reviewers.
 
-9. Provide your final video summary, ready for publication."""
+11. Provide your final video summary, ready for publication."""
         
 
         return jsonify({"prompt": str(prompt)})
