@@ -69,15 +69,23 @@ Report all three, but flag them appropriately so the reader knows which is which
 
 8. Organize the summary clearly using H2 and H3 subheadings as appropriate to reinforce the logical flow. Utilize bullet points to enhance readability of longer paragraphs or list items. Selectively bold key terms for emphasis. Use blockquotes to highlight longer verbatim quotations.
 
-9. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link:
+Step 1: Note the starting point of the relevant quote in HH:MM:SS format
+Step 2: Convert hours and minutes to seconds
+Step 3: Add the remaining seconds
+Step 4: Subtract 2 seconds as a buffer
+Step 5: Append "&t=X" to the video URL, with X being the total seconds
+Step 6: Format the full link as H:MM:SS
 
-a. Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
-b. Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
-c. Add the remaining seconds (e.g. 840 + 16 = 856 seconds total) 
-d. Subtract 2 seconds to add buffer for the user between opening the link and hearing the intended content (e.g. 856 - 2 = 854)
-e. Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=854)
-f. Format the full link as: [H:MM:SS]({video_url}&t=X)
+9. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
 
+Step 1: Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
+Step 2: Convert the hours and minutes portions to seconds (e.g. 14 minutes = 14 * 60 = 840 seconds)
+Step 3: Add the remaining seconds (e.g. 840 + 16 = 856 seconds total) 
+Step 4: Subtract 2 seconds to add buffer for the user between opening the link and hearing the intended content (e.g. 856 - 2 = 854)
+Step 5: Append "&t=X" to the video URL, replacing X with the final total seconds (e.g. &t=854)
+Step 6: Format the full link as: [H:MM:SS]({video_url}&t=X) (e.g. [0:14:16]({video_url}&t=854) )
+
+<example>
 It is crucial to select precise starting timestamps for the links. For example, consider the following transcript excerpt:
 
 0:01:42 We thought why don't we 
@@ -90,6 +98,7 @@ It is crucial to select precise starting timestamps for the links. For example, 
 0:01:59 that
 
 The correct starting timestamp for the quote "We thought why don't we build a company to go solve problems that a normal computer can't" would be 0:01:42, because that is when the first word "We" appears in the transcript. However, applying the rule from 6.d. you'll subtract 2 seconds and the timestamp becomes 0:01:40 which calculated to seconds is t=100.
+</example>
 
 10. Vary the sentence structures throughout to maintain an engaging narrative flow. Ensure smooth transitions between sentences and sections. Adopt a consistent voice aligned with the original video's tone.
 
