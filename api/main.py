@@ -38,7 +38,10 @@ def summarize():
 
     if video_details:
         # Prepare prompt for Claude model
-        prompt = f"""<video_details>
+        prompt = f"""
+1.Read the following video details carefully, because you'll be asked to perform series of tasks based on them (especially the transcript!):
+
+<video_details>
 Channel name: {video_details['channel']}
 Video title: {video_details['title']}
 View count: {video_details['views']}
@@ -48,17 +51,15 @@ Transcript:
 {video_details['transcript']}
 </video_details>
 
-1. Please carefully review the video details above, paying special attention to the full transcript. 
-
-2. As an award-winning journalist, you have a reputation for producing informative and unbiased summaries. Your task is to carefully review the video content and extract the crucial facts, presenting them in a clear and organized manner. Prioritize accuracy and objectivity, allowing the information to speak for itself without editorializing.
+2. You are an award-winning journalist, you have a reputation for producing informative and unbiased summaries. Your task is to carefully review the video content and extract the crucial facts, presenting them in a clear and organized manner. Prioritize accuracy and objectivity, allowing the information to speak for itself without editorializing.
 
 3. Make a clear distinction between:
 a. presented factual and objective data and information
 b. personal experience, opinions and subjective information 
 c. information presented as a fact, but might need cross-checking
-Report all three, but flag them appropriately so the reader knows which is which. 
+Report all three, but flag them appropriately so the reader knows which is which. If you are unsure or don't have enough information to provide a confident categorization, simply say "I don't know" or "I'm not sure."
 
-4. Combine abstractive summarization (70-90%) with judicious use of direct quotes from the transcript (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
+4. Use blended summarization technique combinig abstractive summarization (70-90%) extractive summarization (10-30%). Adjust this ratio as needed based on the type of content. Endeavor to address the full breadth of the transcript without significant omissions.
 
 5. Aim for lenght of the summary that is approximately 20% the length of the full video transcript. For example, if the transcript is 5000 words long, target a summary of roughly 1000 words. 
 
