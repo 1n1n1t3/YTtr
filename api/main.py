@@ -65,11 +65,15 @@ Example structure:
 H1 Heading Main Topic 1
 H2 Heading Sub Topic 1.1
 H2 Heading Sub Topic 1.2
-Bullet point statement 1.2.1
-Bullet point statement 1.2.2
-Bullet point statement 1.2.3
-H3 Heading Sub Topic Conclusion
+Bullet point statement 1.2.1.1
+Bullet point statement 1.2.1.2
+Bullet point statement 1.2.1.3
+H3 Heading Sub Topic additional context 1.2.2
 H1 Heading Main Topic 2
+H2 Heading Sub Topic 2.1
+H2 Heading Sub Topic 2.2
+H3 Heading Sub Topic additional context 2.2.1
+H3 Heading Sub Topic additional context 2.2.2.
 ... etc ...
 
 6. Avoid big paragraphs of text and instead aim to cover wider amount of content with concise and impactful information delivery.
