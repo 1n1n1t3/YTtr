@@ -96,7 +96,6 @@ The correct starting timestamp for the quote "We thought why don't we build a co
 
 11. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
 
-
 12. Engage in an iterative refinement process:
 a. First draft: Focus on accuracy and coverage of main points.
 b. Second draft: Improve clarity, coherence, and style.
