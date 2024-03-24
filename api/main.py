@@ -59,7 +59,7 @@ Adjust this ratio as needed based on the type of the content.
 
 4. Endeavor to address the full breadth of the transcript without significant omissions. Aim for a summary length of approximately 20% of the full video transcript. For example, if the transcript is 5000 words, the summary should be at least 1000 words.
 
-5. Break the summary into series of hierarchical sections reflecting the key topics and points. Use H1 headings for each main section and H2/H3 subheadings to further give structure to the summary.
+5. Break the summary into series of hierarchical sections reflecting the key topics and points. Use H1 headings for each main section and H2/H3 subheadings to further give structure to the summary. Occasionally use bullet points when appropriate.
 
 6. Avoid big paragraphs of text and instead aim to cover wider amount of content with concise and impactful information delivery.
 
