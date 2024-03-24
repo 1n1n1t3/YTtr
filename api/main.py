@@ -55,13 +55,19 @@ Transcript:
 3. Use Blended summarization technique combinig:
 a) Abstractive summarization (60-80%) - rephrase the most important points in your own words to concisely capture the essence.
 b) Extractive summarization (20-40%) - selectively pull out the most impactful direct quotes from the transcript while noting the timestamp where they appeared.
-Adjust this ratio as needed based on the type of the content. Make sure the extracted quotes are short, important and impactful.
+Adjust this ratio as needed based on the type of the content. 
 
 4. Endeavor to address the full breadth of the transcript without omissions and big time gaps. Aim for a summary length of approximately 20% of the full video transcript. For example, if the transcript is 5000 words, the summary should be at least 1000 words.
 
 5. Break the summary into sections reflecting the key topics. Use H1 headings for each main section and H2/H3 subheadings, bullet points, bolded phrases and new line quotes to further give structure to the summary.
 
-6. Avoid big paragraphs of text and instead strive to cover more information with short sentences, quotes and bullet points.
+6. Avoid big paragraphs of text and instead strive to cover more information with concise and impactful short sentences, quotes, lists and comparison lists.
+
+7. Quoting can be in two formats:
+a. When quoting a phrase said in the transcript just use: "the phrase"
+b. When quoting full sentence use a new line and then the quoted sentence. For example:
+>This is a quoted full sentence.
+Make sure the extracted quotes are short, important and impactful.
 
 7. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
 
