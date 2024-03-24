@@ -92,11 +92,9 @@ The correct starting timestamp for the quote "We thought why don't we build a co
 
 10. Vary the sentence structures throughout to maintain an engaging narrative flow. Ensure smooth transitions between sentences and sections. Adopt a consistent voice aligned with the original video's tone.
 
-11. Conclude the summary with 2-4 concise, actionable takeaways for the target audience. Focus these on the What, Why and How of the video's key messages. Frame them persuasively to inspire the reader to act on the insights.
+11. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
 
-12. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
-
-13. Provide your final video summary."""
+12. Provide your final video summary."""
         
 
         return jsonify({"prompt": str(prompt)})
