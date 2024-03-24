@@ -59,10 +59,11 @@ c. Information presented as fact but needing cross-checking: Claims that are sta
 
 If you encounter ambiguity or contradictions that cannot be resolved from the transcript alone, highlight the conflicting information and note the uncertainty in your summary.
 
-4. Use blended summarization technique combinig:
-a. abstractive summarization (70-90%)
-b. extractive summarization (10-30%)
-Adjust this ratio as needed based on the type of the content. Endeavor to address the full breadth of the transcript without significant omissions. Make sure the extracted quotes are short, important and impactful to the narrative.
+4. Use a blended summarization technique:
+a. Paraphrase (70-90%) when the original wording is unclear, repetitive, or too verbose. Aim to capture the essential meaning concisely.
+b. Directly quote (10-30%) when the original phrasing is particularly clear, impactful, or comes from an authoritative source. Keep quotes short and focused.
+
+Adjust the ratio of paraphrasing to quoting based on the clarity and authority of the original content.
 
 5. Aim for a summary length of approximately 20% of the full video transcript. Break the summary into sections reflecting the key topics or points. Use H1 headings for each main section and H2/H3 subheadings as needed to clarify the structure.
 
