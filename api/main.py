@@ -67,6 +67,7 @@ Adjust this ratio as needed based on the type of the content.
 a. When quoting a phrase said in the transcript just use "the phrase" and bold it. This type of quote is only for not full sentences and for short phrases extracted from the transcript.
 b. When quoting a full sentence use a new line and then preface the quoted sentence with ">". Make sure the quote is not too long, keep it one sentence or two maximum. For example:
 >This is an impactful quoted full sentence.
+Don't mix both of the for the same timestamps, choose the more appropriate one.
 
 7. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
 
