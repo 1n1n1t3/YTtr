@@ -64,10 +64,9 @@ Adjust this ratio as needed based on the type of the content.
 6. Avoid big paragraphs of text and instead strive to cover more information with concise and impactful short sentences, quotes, lists and comparison lists.
 
 7. Quoting can be in two formats:
-a. When quoting a phrase said in the transcript just use "the phrase" and bold it.
-b. When quoting full sentence use a new line and then the quoted sentence. For example:
->This is a quoted full sentence.
-Make sure the extracted quotes are short (one or two sentences maximum), important and impactful.
+a. When quoting a phrase said in the transcript just use "the phrase" and bold it. This type of quote is only for not full sentences and for short phrases extracted from the transcript.
+b. When quoting a full sentence use a new line and then preface the quoted sentence with ">". Make sure the quote is not too long, keep it one sentence or two maximum. For example:
+>This is an impactful quoted full sentence.
 
 7. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
 
