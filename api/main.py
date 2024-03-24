@@ -54,7 +54,7 @@ Transcript:
 
 3. Use Blended summarization technique combinig:
 a) Abstractive summarization (60-80%) - rephrase the most important points in your own words to concisely capture the essence.
-b) Extractive summarization (20-40%) - selectively pull out the most impactful direct quotes from the transcript while noting the timestamp where they appeared.
+b) Extractive summarization (20-40%) - selectively pull out the most impactful direct quotes from the transcript.
 Adjust this ratio as needed based on the type of the content. 
 
 4. Endeavor to address the full breadth of the transcript without omissions and big time gaps. Aim for a summary length of approximately 20% of the full video transcript. For example, if the transcript is 5000 words, the summary should be at least 1000 words.
