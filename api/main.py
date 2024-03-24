@@ -72,7 +72,6 @@ H3 Heading Sub Topic Conclusion
 H1 Heading Main Topic 2
 ... etc ...
 
-
 6. Avoid big paragraphs of text and instead aim to cover wider amount of content with concise and impactful information delivery.
 
 7. Quoting can be in two formats:
