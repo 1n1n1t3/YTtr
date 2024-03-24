@@ -69,13 +69,6 @@ Report all three, but flag them appropriately so the reader knows which is which
 
 8. Organize the summary clearly using H2 and H3 subheadings as appropriate to reinforce the logical flow. Utilize bullet points to enhance readability of longer paragraphs or list items. Selectively bold key terms for emphasis. Use blockquotes to highlight longer verbatim quotations.
 
-Step 1: Note the starting point of the relevant quote in HH:MM:SS format
-Step 2: Convert hours and minutes to seconds
-Step 3: Add the remaining seconds
-Step 4: Subtract 2 seconds as a buffer
-Step 5: Append "&t=X" to the video URL, with X being the total seconds
-Step 6: Format the full link as H:MM:SS
-
 9. Generate clickable timestamp links for each section header and key point or quote used. Append them after the relevant text. To calculate the timestamp link follow these steps:
 
 Step 1: Note down the starting point of the relevant part of the video in H:MM:SS format (e.g. 0:14:16) 
