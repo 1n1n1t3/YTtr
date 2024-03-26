@@ -94,20 +94,7 @@ The correct starting timestamp for the quote "We thought why don't we build a co
 
 11. Revise the full summary, checking for any unintended bias or editorializing. Aim to neutrally represent the content of the original video. Consider engaging in a feedback loop with a human reviewer to iteratively optimize the summary.
 
-12. After summarizing the text, format the summary beautifully using Markdown to make it visually appealing and easy to read.
-
-When formatting your summary using Markdown:
-a. Use a clear, descriptive heading to introduce the summary.
-b. Organize the main points and key details using bullet points or numbered lists to make the
-information easy to scan and understand.
-c. Use bold or italic formatting to emphasize important terms, phrases, or concepts.
-d. If applicable, include subheadings to break the summary into logical sections and improve
-readability.
-e. Ensure that the formatting is consistent throughout the summary and that it enhances the clarity
-of the content.
-
-Please provide your beautifully formatted summary.
-"""
+12. Provide your final video summary, ready for publication. Use all known Markdown operators to present the output."""
         
 
         return jsonify({"prompt": str(prompt)})
