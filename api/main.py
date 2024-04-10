@@ -123,7 +123,7 @@ def get_video_details(video_id):
 
         # Fetch transcript with timestamps
         try:
-            transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'de', 'jp', 'fr', 'pt', 'es'])
+            transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'bg', 'mk','ru','ro','ch'])
             transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
         except Exception as e:
             print(f"Error fetching transcript: {e}")
