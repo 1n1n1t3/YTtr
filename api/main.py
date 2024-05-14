@@ -119,7 +119,7 @@ def get_video_details(video_id):
         channel_title = snippet['channelTitle']
         video_title = snippet['title']  
         view_count = statistics['viewCount']
-        like_count = statistics['likeCount']
+        like_count = statistics.get('likeCount', None)  # Use .get() to handle missing likeCount
 
         # Fetch transcript with timestamps
         try:
