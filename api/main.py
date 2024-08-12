@@ -125,7 +125,8 @@ def get_video_details(video_id):
         try:
             encoded_user = os.environ.get('NORD_USER', '')
             encoded_pass = os.environ.get('NORD_PASSWORD', '')
-            _proxies = {"https": f"https://{encoded_user}:{encoded_pass}@amsterdam.nl.socks.nordhold.net:1080"}
+            # _proxies = {"https": f"https://{encoded_user}:{encoded_pass}@amsterdam.nl.socks.nordhold.net:1080"}
+            _proxies = {"https": f"194.182.178.90:3128"}
             transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru','it','ko','nl'], 
                                                                                     proxies=_proxies)
             transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
