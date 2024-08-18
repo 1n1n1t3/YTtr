@@ -8,8 +8,12 @@
   "routes": [
     {
       "src": "/summarize",
-      "dest": "api/main.py",
-      "maxDuration": 30 
+      "dest": "api/main.py"
     }
-  ]
+  ],
+  "functions": {
+    "api/main.py": {
+      "maxDuration": 300
+    }
+  }
 }
