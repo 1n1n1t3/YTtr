@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import youtube_transcript_api
 import datetime
+from free_proxy import FreeProxy
 
 app = Flask(__name__)
 
@@ -105,6 +106,15 @@ def extract_video_id(url):
     video_id = re.findall(r"v=(\S{11})", url)[0]
     return video_id
 
+def get_working_proxy():
+    try:
+        proxy = FreeProxy(country_id=['DE'], timeout=1).get()
+        return {"https": proxy}
+    except Exception as e:
+        print(f"Error getting proxy: {e}")
+        return None
+
+
 # Function to get video details from YouTube Data API
 def get_video_details(video_id):
     api_url = f"https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id={video_id}&key={yt_api_Key}"
@@ -119,21 +129,24 @@ def get_video_details(video_id):
         channel_title = snippet['channelTitle']
         video_title = snippet['title']  
         view_count = statistics['viewCount']
-        like_count = statistics.get('likeCount', None)  # Use .get() to handle missing likeCount
+        like_count = statistics.get('likeCount', None)
 
         # Fetch transcript with timestamps
         try:
-            encoded_user = os.environ.get('NORD_USER', '')
-            encoded_pass = os.environ.get('NORD_PASSWORD', '')
-            # _proxies = {"https": f"https://{encoded_user}:{encoded_pass}@amsterdam.nl.socks.nordhold.net:1080"}
-            _proxies = {"https": f"36.72.252.220:8080"}
-            transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru','it','ko','nl']
-                                                                                    )
+            _proxies = get_working_proxy()
+            if _proxies is None:
+                raise Exception("No working proxy found")
+
+            transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
+                video_id, 
+                languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
+                proxies=_proxies
+            )
             transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
         except Exception as e:
             print(f"Error fetching transcript: {e}")
             transcript_text = None
-        #print(transcript_text)
+
         return {
             "channel": channel_title,
             "title": video_title,
