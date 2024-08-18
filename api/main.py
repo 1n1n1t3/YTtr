@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import youtube_transcript_api
 import datetime
-from free_proxy import FreeProxy
+from fp.fp import FreeProxy
 
 app = Flask(__name__)
 
@@ -108,7 +108,7 @@ def extract_video_id(url):
 
 def get_working_proxy():
     try:
-        proxy = FreeProxy(country_id=['DE'], timeout=1).get()
+        proxy = FreeProxy(https=True).get()
         return {"https": proxy}
     except Exception as e:
         print(f"Error getting proxy: {e}")
