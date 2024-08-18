@@ -132,20 +132,25 @@ def get_video_details(video_id):
         like_count = statistics.get('likeCount', None)
 
         # Fetch transcript with timestamps
-        try:
-            _proxies = get_working_proxy()
-            if _proxies is None:
-                raise Exception("No working proxy found")
+        transcript_text = None
+        max_retries = 10
+        for attempt in range(max_retries):
+            try:
+                _proxies = get_working_proxy()
+                if _proxies is None:
+                    raise Exception("No working proxy found")
 
-            transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
-                video_id, 
-                languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
-                proxies=_proxies
-            )
-            transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
-        except Exception as e:
-            print(f"Error fetching transcript: {e}")
-            transcript_text = None
+                transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
+                    video_id, 
+                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
+                    proxies=_proxies
+                )
+                transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
+                break  # If successful, exit the loop
+            except Exception as e:
+                print(f"Error fetching transcript (attempt {attempt + 1}/{max_retries}): {e}")
+                if attempt == max_retries - 1:
+                    print("Max retries reached. Unable to fetch transcript.")
 
         return {
             "channel": channel_title,
