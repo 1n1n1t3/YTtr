@@ -142,8 +142,8 @@ def get_video_details(video_id):
 
                 transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
                     video_id, 
-                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl']#,
-                    #proxies=_proxies
+                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
+                    proxies=_proxies
                 )
                 transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
                 break  # If successful, exit the loop
