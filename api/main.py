@@ -1,11 +1,8 @@
 import os
 import re
-import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-import youtube_transcript_api
-import datetime
-from fp.fp import FreeProxy
+import yt_dlp
 
 app = Flask(__name__)
 
@@ -106,58 +103,30 @@ def extract_video_id(url):
     video_id = re.findall(r"v=(\S{11})", url)[0]
     return video_id
 
-def get_working_proxy():
-    try:
-        proxy = FreeProxy(https=True, timeout=0.8, rand=True).get()
-        return {"https": proxy}
-    except Exception as e:
-        print(f"Error getting proxy: {e}")
-        return None
-
-
 # Function to get video details from YouTube Data API
 def get_video_details(video_id):
-    api_url = f"https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id={video_id}&key={yt_api_Key}"
-    json_url = requests.get(api_url)
-    data = json_url.json()
-
-    if 'items' in data and data['items']:
-        video_data = data['items'][0]
-        snippet = video_data['snippet']
-        statistics = video_data['statistics']
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'ffmpegextractsub',
+            'params': {'format': 'srt'},
+        }],
+    }
+    
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(f"https://www.youtube.com/watch?v={video_id}", download=False)
         
-        channel_title = snippet['channelTitle']
-        video_title = snippet['title']  
-        view_count = statistics['viewCount']
-        like_count = statistics.get('likeCount', None)
-
-        # Fetch transcript with timestamps
-        transcript_text = None
-        max_retries = 1
-        for attempt in range(max_retries):
-            try:
-                #_proxies = get_working_proxy()
-                #if _proxies is None:
-                #    raise Exception("No working proxy found")
-
-                transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
-                    video_id, 
-                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl']#,
-                    #proxies=_proxies
-                )
-                transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
-                break  # If successful, exit the loop
-            except Exception as e:
-                print(f"Error fetching transcript (attempt {attempt + 1}/{max_retries}): {e}")
-                if attempt == max_retries - 1:
-                    print("Max retries reached. Unable to fetch transcript.")
-
+        if 'entries' in info:
+            video = info['entries'][0]
+        else:
+            video = info
+        
+        transcript = ydl.process_subtitles(video)
+        
         return {
-            "channel": channel_title,
-            "title": video_title,
-            "views": view_count,
-            "likes": like_count,
-            "transcript": transcript_text
+            "channel": video['channel'],
+            "title": video['title'], 
+            "views": video['view_count'],
+            "likes": video.get('like_count', None),
+            "transcript": transcript
         }
-    else:
-        return None

@@ -1,5 +1,4 @@
 requests
-youtube-transcript-api
 flask
 flask_cors
-free-proxy
+yt_dlp
