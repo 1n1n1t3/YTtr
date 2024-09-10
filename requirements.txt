@@ -2,4 +2,4 @@ requests
 youtube-transcript-api
 flask
 flask_cors
-stem
+free-proxy
