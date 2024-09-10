@@ -3,6 +3,7 @@ import re
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import yt_dlp
+import requests
 
 app = Flask(__name__)
 
@@ -108,8 +109,9 @@ def get_video_details(video_id):
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
-            'key': 'ffmpegextractsub',
-            'params': {'format': 'srt'},
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
         }],
     }
     
@@ -121,7 +123,11 @@ def get_video_details(video_id):
         else:
             video = info
         
-        transcript = ydl.process_subtitles(video)
+        transcript = None
+        if 'subtitles' in video and 'en' in video['subtitles']:
+            subtitle_info = video['subtitles']['en']
+            subtitle_url = subtitle_info[0]['url']
+            transcript = requests.get(subtitle_url).text
         
         return {
             "channel": video['channel'],
