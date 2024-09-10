@@ -5,7 +5,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import youtube_transcript_api
 import datetime
-from fp.fp import FreeProxy
+from stem import Signal
+from stem.control import Controller
+import time 
 
 app = Flask(__name__)
 
@@ -108,8 +110,19 @@ def extract_video_id(url):
 
 def get_working_proxy():
     try:
-        proxy = FreeProxy(https=True).get()
-        return {"https": proxy}
+        with Controller.from_port(port=9051) as controller:
+            controller.authenticate()
+            
+            # Connect to the Tor network
+            controller.connect()
+            
+            # Wait for connection
+            time.sleep(10)
+            
+            # Disconnect from the Tor network
+            controller.disconnect()
+            
+            return {"https": "socks5://127.0.0.1:9050"}
     except Exception as e:
         print(f"Error getting proxy: {e}")
         return None
@@ -136,15 +149,18 @@ def get_video_details(video_id):
         max_retries = 6
         for attempt in range(max_retries):
             try:
-                _proxies = get_working_proxy()
-                if _proxies is None:
+                proxies = get_working_proxy()
+                if proxies is None:
                     raise Exception("No working proxy found")
 
-                transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
-                    video_id, 
-                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
-                    proxies=_proxies
-                )
+                if proxies:
+                    transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
+                        video_id,
+                        languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
+                        proxies=proxies
+                    )
+                else:
+                    raise Exception("No working proxy found")
                 transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
                 break  # If successful, exit the loop
             except Exception as e:
