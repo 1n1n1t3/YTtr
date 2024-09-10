@@ -108,7 +108,7 @@ def extract_video_id(url):
 
 def get_working_proxy():
     try:
-        proxy = FreeProxy(https=True, timeout=0.2, rand=True, google=True).get()
+        proxy = FreeProxy(https=True, timeout=1, rand=True, google=True).get()
         return {"https": proxy}
     except Exception as e:
         print(f"Error getting proxy: {e}")
