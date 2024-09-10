@@ -136,14 +136,14 @@ def get_video_details(video_id):
         max_retries = 6
         for attempt in range(max_retries):
             try:
-                _proxies = get_working_proxy()
-                if _proxies is None:
-                    raise Exception("No working proxy found")
+                #_proxies = get_working_proxy()
+                #if _proxies is None:
+                #    raise Exception("No working proxy found")
 
                 transcript = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(
                     video_id, 
-                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl'],
-                    proxies=_proxies
+                    languages=['en', 'de', 'jp', 'fr', 'pt', 'es', 'ru', 'it', 'ko', 'nl']#,
+                    #proxies=_proxies
                 )
                 transcript_text = '\n'.join([f"{str(datetime.timedelta(seconds=int(entry['start'])))} {entry['text']}" for entry in transcript])
                 break  # If successful, exit the loop
