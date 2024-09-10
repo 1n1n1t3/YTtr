@@ -133,7 +133,7 @@ def get_video_details(video_id):
 
         # Fetch transcript with timestamps
         transcript_text = None
-        max_retries = 6
+        max_retries = 1
         for attempt in range(max_retries):
             try:
                 #_proxies = get_working_proxy()
